@@ -7,8 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SecurityPageComponent {
   selectedTab: string = "login";
-
-
+  
   selectTab(event: Event) {
     this.selectedTab = (event.target as Element).textContent?.toLowerCase() === 'connexion' ? 'login' : 'register';
   }

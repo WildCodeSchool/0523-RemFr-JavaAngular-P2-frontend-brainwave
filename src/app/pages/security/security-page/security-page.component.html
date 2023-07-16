@@ -30,9 +30,7 @@
         </div>
     </div>
     <div class="form-container">
-        <div *ngIf="selectedTab == 'login'">
-            <app-login></app-login>
-        </div>
+        <app-login class="login-form-container" *ngIf="selectedTab == 'login'"></app-login>
         <div *ngIf="selectedTab == 'register'">
             <app-register></app-register>
         </div>

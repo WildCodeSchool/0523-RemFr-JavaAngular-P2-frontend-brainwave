@@ -12,10 +12,11 @@ import { DemoDirective } from './directives/demo.directive';
 import { SecurityPageComponent } from './pages/security/security-page/security-page.component';
 import { LoginComponent } from './components/security/login/login.component';
 import { RegisterComponent } from './components/security/register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, DemoPageComponent, DemoComponent, DemoPipe, DemoDirective, SecurityPageComponent, LoginComponent, RegisterComponent],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
