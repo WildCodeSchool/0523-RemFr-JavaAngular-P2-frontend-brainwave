@@ -1,21 +1,21 @@
 .login-box {
-    width: 70vw;
+  width: 70vw;
 }
 
 .user-box {
-    position: relative;
+  position: relative;
+  margin-bottom: 30px;
 }
 
 .user-box input {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #6F42C1;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid rgba(111, 66, 193, 0.64);
-    outline: none;
-    background: transparent;
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #6F42C1;
+  border: none;
+  border-bottom: 1px solid rgba(111, 66, 193, 0.64);
+  outline: none;
+  background: transparent;
 }
 
 .user-box label {
@@ -52,4 +52,11 @@
     border: 1px solid #000;
     background: #6F42C1;
     box-shadow: 0px 4px 4px 0px #9B7ED0;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  max-width: 100%;
 }

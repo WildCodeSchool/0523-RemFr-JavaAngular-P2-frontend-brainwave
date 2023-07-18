@@ -1,38 +1,82 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  passwordMatch: boolean = true;
-  passwordStrong: boolean = false;
-  isEmailValid: boolean = false;
-  password: string = "";
-  confirmPassword: string = "";
-  email: string = "";
-  formSubmitted: boolean = false;
+  @Output() registrationStatus = new EventEmitter<{ success: boolean; submitted: boolean }>();
+  passwordMatch = true;
+  passwordStrong = false;
+  isEmailValid = false;
+  formSubmitted = false;
+  confirmationPassword = '';
+  user = new registerUser();
 
-  verifyPassword(password: string, confirmPassword: string) {
-    this.passwordMatch = password === confirmPassword;
+  constructor(private http: HttpClient) {}
+
+  verifyPassword() {
+    this.passwordMatch = this.user.password === this.confirmationPassword;
   }
 
-  verifyPasswordStrength(password: string) {
-    this.passwordStrong = password.length >= 8;
-  }
-
-  submitForm() {
-    this.formSubmitted = true;
-    console.log("form submitted");
-  }
-
-  checkEmail(email: string) {
-    if (email.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i)) {
-      console.log(email)
-      this.isEmailValid = true;
-    } else {
-      this.isEmailValid = false;
+  verifyPasswordStrength() {
+    if (this.user.password !== undefined) {
+      this.passwordStrong = this.user.password.length >= 8;
     }
+  }
+
+  onSubmit() {
+    this.formSubmitted = true;
+    if (
+      this.passwordMatch &&
+      this.passwordStrong &&
+      this.isEmailValid &&
+      this.user.firstname !== undefined &&
+      this.user.lastname !== undefined &&
+      this.user.email !== undefined &&
+      this.user.password !== undefined &&
+      this.user.firstname !== '' &&
+      this.user.lastname !== '' &&
+      this.user.email !== '' &&
+      this.user.password !== ''
+    ) {
+      this.registerUser();
+    } else {
+      this.registrationStatus.emit({ success: false, submitted: this.formSubmitted });
+    }
+  }
+
+  checkEmail() {
+    if (this.user.email !== undefined) {
+      this.isEmailValid = !!this.user.email.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i);
+    }
+  }
+
+  registerUser() {
+    return this.http
+      .post('http://localhost:8080/api/auth/register', this.user, { observe: 'response' })
+      .subscribe((response) => {
+        if (response.status === 200 || response.status === 201) {
+          this.registrationStatus.emit({ success: true, submitted: this.formSubmitted });
+        } else if (response.status >= 400) {
+          this.registrationStatus.emit({ success: false, submitted: this.formSubmitted });
+        }
+      });
+  }
+}
+
+export class registerUser {
+  lastname: string;
+  firstname: string;
+  email: string;
+  password: string;
+
+  constructor() {
+    this.lastname = '';
+    this.firstname = '';
+    this.email = '';
+    this.password = '';
   }
 }

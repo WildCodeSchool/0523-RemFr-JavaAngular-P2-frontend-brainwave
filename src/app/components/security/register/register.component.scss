@@ -40,18 +40,21 @@
 .button {
     width: 100%;
     margin: 10px 0 20px;
-    border: none;
     outline: none;
     color: #fff;
     font-size: 16px;
-    cursor: pointer;
     border-radius: 5px;
     text-align: center;
     padding: 10px 0;
     border-radius: 5px;
     border: 1px solid #000;
-    background: #6F42C1;
+    background: gray;
     box-shadow: 0px 4px 4px 0px #9B7ED0;
+}
+
+.valid-form {
+    background: #6F42C1;
+    cursor: pointer;
 }
 
 .error {
