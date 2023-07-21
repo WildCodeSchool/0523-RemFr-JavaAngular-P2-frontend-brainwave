@@ -1,0 +1,91 @@
+.modal-container {
+  width: 20rem;
+  height: 15rem;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  ul.search-results {
+    list-style-type: none;
+    margin: 10px 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  ul.search-results li {
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  ul.search-results li:hover {
+    background-color: #f0f0f0;
+  }
+
+  div.selected-participants {
+    margin-top: 20px;
+  }
+
+  h4 {
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  li {
+    justify-content: space-between;
+  }
+  button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: var(--violet);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+  }
+
+  .addButton {
+    display: flex;
+    justify-content: center;
+  }
+
+  button:hover {
+    background-color: var(--turquoise);
+  }
+}

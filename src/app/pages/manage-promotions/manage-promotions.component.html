@@ -1,0 +1,38 @@
+<div *ngIf="promotionsData">
+  <ul>
+    <li *ngFor="let promotion of promotionsData">
+      <p>Name: {{ promotion.name }}</p>
+      <p>Tag: {{ promotion.tag }}</p>
+      <p>AuthorId: {{ promotion.authorId }}</p>
+      <p>Description:</p>
+      <div [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
+      <p>Creation Date: {{ promotion.creationDate }}</p>
+      <p>ParticipantsIds:</p>
+      <ul>
+        <li *ngFor="let participantId of promotion.participantsIds">
+          {{ participantId }}
+        </li>
+      </ul>
+      <p>ResourceIds:</p>
+      <ul>
+        <li *ngFor="let resourceId of promotion.resourceIds">
+          {{ resourceId }}
+        </li>
+      </ul>
+      <p>TopicIds:</p>
+      <ul>
+        <li *ngFor="let topicId of promotion.topicIds">
+          {{ topicId }}
+        </li>
+      </ul>
+
+      <div>
+        <img class="Coucou" [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!promotionsData">
+  <p>Promotion not found.</p>
+</div>

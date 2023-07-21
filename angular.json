@@ -16,7 +16,11 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "options": {
+          "options": { "allowedCommonJsDependencies": [
+            "quill",
+            "quill-emoji/dist/quill-emoji.js",
+            "quill-image-resize-module"
+          ],
             "outputPath": "dist/angular-template",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -113,6 +117,7 @@
   "cli": {
     "schematicCollections": [
       "@angular-eslint/schematics"
-    ]
+    ],
+    "analytics": false
   }
 }

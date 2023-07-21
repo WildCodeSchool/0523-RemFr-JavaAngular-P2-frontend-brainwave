@@ -1,0 +1,27 @@
+<div class="modal-container">
+  <h3>Ajouter des participants</h3>
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (focus)="onFocus()"
+    (input)="searchParticipants()"
+    placeholder="Search participants"
+  />
+  <ul *ngIf="showDropdown" class="search-results">
+    <li *ngFor="let participant of searchResults" (click)="selectUser(participant.id)">
+      {{ participant.firstname }} {{ participant.lastname }}
+    </li>
+  </ul>
+  <div class="selected-participants">
+    <h4>Participants sélectionnés :</h4>
+    <ul>
+      <li *ngFor="let participant of participants">
+        {{ participant }}
+        <button (click)="removeParticipant(participant)">Remove</button>
+      </li>
+    </ul>
+  </div>
+  <div class="addButton">
+    <button (click)="addParticipantToPromotion()">Ajouter</button>
+  </div>
+</div>

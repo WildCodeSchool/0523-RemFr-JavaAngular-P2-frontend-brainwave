@@ -1,0 +1,29 @@
+<div class="promotion">
+  <label for="title">Titre de la promotion:</label>
+  <input type="text" id="input" name="title" [(ngModel)]="textValue" placeholder="Entrez le titre de la promotion" />
+</div>
+<div class="promotion">
+  <label for="tag">Tag de la promotion:</label>
+  <input type="text" id="input" name="tag" [(ngModel)]="tag" placeholder="Entrez le tag de la promotion" />
+</div>
+<div class="addParticipants">
+  <div id="editor"></div>
+  <button (click)="openParticipantsModal()"></button>
+
+  <!-- Modal -->
+  <div class="modal-container" [ngClass]="{ 'show-modal': showModal }">
+    <div class="modal-content">
+      <!-- TODO echanger -->
+      <!-- <app-participants-modal *ngIf="showModal" (closeModal)="closeParticipantsModal()">Close</app-participants-modal> -->
+      <app-participants-modal
+        *ngIf="showModal"
+        [createdPromoId]="createdPromoId"
+        (closeModal)="closeParticipantsModal()"
+      ></app-participants-modal>
+    </div>
+  </div>
+
+  <div class="Button">
+    <button class="PromoButton" (click)="sendText()">Envoyer</button>
+  </div>
+</div>
