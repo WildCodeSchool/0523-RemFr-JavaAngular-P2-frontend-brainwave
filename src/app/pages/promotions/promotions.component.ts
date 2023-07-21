@@ -62,7 +62,7 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
   }
   sendText(): void {
     const descriptionText = this.quill.root.innerHTML;
-    const url = 'http://localhost:8080/promotions/04895e78-4ef2-426d-b577-d3e7a1b9870b';
+    const url = 'http://localhost:8080/promotions/857c8c7d-719e-444c-ab02-d0772bb7dc6d';
 
     const data = {
       description: descriptionText,
@@ -72,17 +72,12 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
 
     this.http.post<Promotion>(url, data).subscribe(
       (response) => {
-        console.log('Promotion created successfully!', response);
         const createdPromotionId = response.id;
         localStorage.setItem('createdPromotionId', createdPromotionId);
         this.promoAdded.emit(response);
         alert('La promotion est créée avec succès !');
         this.createdPromoId;
-        // setTimeout(() => {
-        //   this.showModal = true;
-        // }, 1000);
-        //TODO echanger
-        // this.showModal = true;
+
         this.router.navigate(['/promotions', createdPromotionId]);
       },
       (error) => {
@@ -106,7 +101,7 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
 
     this.http.post(uploadUrl, formData).subscribe(
       (response: any) => {
-        console.log('Image uploaded successfully!', response);
+        console.info('Image uploaded successfully!', response);
       },
       (error) => {
         console.error('Failed to upload image', error);

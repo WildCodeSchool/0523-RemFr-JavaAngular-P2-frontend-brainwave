@@ -37,9 +37,8 @@ export class ParticipantsModalComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers();
     this.createdPromotionId = this.route.snapshot.paramMap.get('id');
-    console.log(this.route.snapshot.paramMap.get('id'));
+
     this.createdPromoId;
-    console.log('Created Promotion ID:', this.createdPromotionId);
   }
 
   onFocus(): void {
@@ -78,18 +77,15 @@ export class ParticipantsModalComponent implements OnInit {
       this.showDropdown = false;
       this.searchTerm = '';
       this.addUsers.push(userId);
-      console.log(this.addUsers);
     }
   }
 
   addParticipantToPromotion(): void {
-    console.log(typeof this.participantId);
     //TODO modifier ici
     const url = `http://localhost:8080/promotions/${this.createdPromotionId}/add-participants`;
 
     this.http.put(url, { participants: this.addUsers }).subscribe(
       (response) => {
-        console.log('Participant added to promotion successfully!', response);
         alert("Votre liste d'étudiant a été créée pour cette promotion ");
       },
       (error) => {

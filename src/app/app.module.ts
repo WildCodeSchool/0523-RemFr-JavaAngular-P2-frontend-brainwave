@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { PromotionsComponent } from './pages/promotions/promotions.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
 import { RegisterComponent } from './components/security/register/register.component';
@@ -18,6 +18,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
+import { AuthService } from './services/auth/auth-service.service';
+import { AuthInterceptor } from './services/auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { AuthGuard } from './services/auth/auth-guard.service';
     SecurityPageComponent,
     LoginComponent,
     RegisterComponent,
+    HomePagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,13 @@ import { AuthGuard } from './services/auth/auth-guard.service';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [CookieService, AuthGuard, LoggedInAuthGuard],
+  providers: [
+    CookieService,
+    AuthGuard,
+    LoggedInAuthGuard,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
 
   bootstrap: [AppComponent],
 })

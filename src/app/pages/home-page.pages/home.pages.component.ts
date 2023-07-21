@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page.pages',
@@ -8,20 +7,10 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./home.pages.component.scss'],
 })
 export class HomePagesComponent {
-  token = this.getToken.get('token');
-
-  constructor(private http: HttpClient, private getToken: CookieService) {}
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${this.token}`,
-    }),
-    withCredentials: true,
-  };
+  constructor(private http: HttpClient) {}
 
   getAllUsers() {
-    return this.http.get('http://localhost:8080/users', this.httpOptions).subscribe(
+    return this.http.get('http://localhost:8080/users').subscribe(
       (data) => console.log(data),
       (error) => console.error(error)
     );

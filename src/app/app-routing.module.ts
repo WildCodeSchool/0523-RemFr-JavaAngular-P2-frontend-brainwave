@@ -14,7 +14,7 @@ const routes: Routes = [
     component: PromotionsComponent,
   },
   {
-    path: 'promotions/',
+    path: 'promotions/all',
     component: ManagePromotionsComponent,
   },
   {
