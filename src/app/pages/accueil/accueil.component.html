@@ -1,0 +1,20 @@
+<app-header></app-header>
+
+<div class="background-image">
+  <img src="assets/images/Fond_Brain.png" />
+  <div class="search-bar">
+    <h1>Brain Wave</h1>
+    <input type="text" placeholder="Rechercher..." (input)="filterSquares($event)" />
+  </div>
+</div>
+
+<button class="filter-button">Filtre par thème</button>
+
+<div class="square-container">
+  <!-- Utilisation de *ngFor pour afficher les carrés filtrés -->
+  <div class="square" *ngFor="let square of filteredSquares">
+    <h2>{{ square.title }}</h2>
+  </div>
+</div>
+
+<app-footer></app-footer>

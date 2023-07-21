@@ -1,0 +1,88 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+nav.header-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #6f42c1;
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+.menu-burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.3s ease-in-out;
+}
+
+.line {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu-burger.open .line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-burger.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-burger.open .line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #6f42c1;
+  display: none;
+  z-index: 2;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.menu.open {
+  display: block;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  padding: 10px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: white;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}

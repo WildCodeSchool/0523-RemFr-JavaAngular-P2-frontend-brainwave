@@ -1,0 +1,33 @@
+/* footer.component.css */
+
+/* Styles pour le footer */
+.footer {
+  background-color: #333; /* Couleur de fond sombre */
+  color: white; /* Couleur du texte en blanc */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Styles pour les liens du footer */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Espacement horizontal entre les liens */
+  margin-top: 10px;
+}
+
+/* Styles pour les liens du footer */
+.footer-link {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Lorsque le lien est survolé */
+.footer-link:hover {
+  color: #ff6600; /* Couleur orange */
+}
+
+/* ... Autres styles ... */

@@ -15,9 +15,21 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './services/auth/auth-service.service';
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 
 @NgModule({
-  declarations: [AppComponent, SecurityPageComponent, LoginComponent, RegisterComponent, HomePagesComponent],
+  declarations: [
+    AppComponent,
+    SecurityPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomePagesComponent,
+    HeaderComponent,
+    FooterComponent,
+    AccueilComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
