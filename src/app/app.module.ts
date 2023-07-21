@@ -6,24 +6,40 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DemoPipe } from './pipes/demo.pipe';
-import { DemoDirective } from './directives/demo.directive';
 import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
+import { RegisterComponent } from './components/security/register/register.component';
+import { LoginComponent } from './components/security/login/login.component';
+import { SecurityPageComponent } from './pages/security/security-page/security-page.component';
+import { RouterModule } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+
+import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
+import { AuthGuard } from './services/auth/auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoPipe,
-    DemoDirective,
     PromotionsComponent,
     ManagePromotionsComponent,
     ParticipantsModalComponent,
+    SecurityPageComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule, HttpClientModule, FormsModule],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    RouterModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
+  providers: [CookieService, AuthGuard, LoggedInAuthGuard],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
