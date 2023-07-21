@@ -10,15 +10,15 @@ import { SecurityPageComponent } from './pages/security/security-page/security-p
 
 const routes: Routes = [
   {
-    path: 'promotions',
+    path: 'createPromotions',
     component: PromotionsComponent,
   },
   {
-    path: 'promotions/all',
+    path: 'promotions/',
     component: ManagePromotionsComponent,
   },
   {
-    path: 'promotions/:id',
+    path: 'addParticipants/:id',
     component: ParticipantsModalComponent,
   },
   {

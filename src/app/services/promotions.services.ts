@@ -11,10 +11,6 @@ export class PromotionsService {
   private promoDataUrl = 'http://localhost:8080/promotions';
   constructor(private httpClient: HttpClient) {}
 
-  // insertPromotion(data: any) {
-  //   const url = 'http://localhost:8080/promotions';
-  //   return this.http.post(url, data);
-  // }
   getPromotions(): Observable<object> {
     return this.httpClient.get(this.promoDataUrl);
   }

@@ -78,7 +78,7 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
         alert('La promotion est créée avec succès !');
         this.createdPromoId;
 
-        this.router.navigate(['/promotions', createdPromotionId]);
+        this.router.navigate(['/addParticipants', createdPromotionId]);
       },
       (error) => {
         console.error('Failed to create promotion', error);

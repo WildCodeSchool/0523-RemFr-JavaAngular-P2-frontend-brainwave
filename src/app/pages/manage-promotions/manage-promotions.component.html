@@ -1,10 +1,12 @@
 <div *ngIf="promotionsData">
-  <ul>
-    <li *ngFor="let promotion of promotionsData">
-      <p>Name: {{ promotion.name }}</p>
+  <div class="promotion-card-container">
+    <div class="promotion-card" *ngFor="let promotion of promotionsData">
+      <h3>Name: {{ promotion.name }}</h3>
       <p>Tag: {{ promotion.tag }}</p>
       <p>AuthorId: {{ promotion.authorId }}</p>
-      <p>Description:</p>
+      <div class="description">
+        <p>Description:</p>
+      </div>
       <div [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
       <p>Creation Date: {{ promotion.creationDate }}</p>
       <p>ParticipantsIds:</p>
@@ -27,12 +29,11 @@
       </ul>
       <p>Photo</p>
       <div>
-        <img class="Coucou" [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
+        <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
-
 <div *ngIf="!promotionsData">
   <p>Promotion not found.</p>
 </div>
