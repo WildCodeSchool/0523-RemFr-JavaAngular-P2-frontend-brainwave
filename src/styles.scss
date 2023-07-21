@@ -1,11 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0;}
+@import '~quill/dist/quill.snow.css';
+@import '~quill-emoji/dist/quill-emoji.css';
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+:root {
+  --violet: #6f42c1;
+  --turquoise: #17a2b8;
+}
+.ql-toolbar.ql-snow {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  padding: 8px;
+  background-color: var(--violet);
+}
+
+.ql-snow.ql-toolbar button svg,
+.ql-snow .ql-toolbar button svg {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(351deg) brightness(104%) contrast(102%);
+}
+
+.ql-snow.ql-toolbar button:hover svg,
+.ql-snow .ql-toolbar button:hover svg {
+  filter: invert(51%) sepia(63%) saturate(583%) hue-rotate(140deg) brightness(91%) contrast(90%);
+}
+
+.ql-snow.ql-toolbar polyline.ql-stroke {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(351deg) brightness(104%) contrast(102%);
+}
+
+.ql-snow.ql-toolbar polyline.ql-stroke:hover {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(351deg) brightness(104%) contrast(102%);
+}
+
+span.ql-picker-label {
+  color: white;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  padding: 0;
+}
 
 // Colors
 
-$primary: #6F42C1;
-$secondary: #17A2B8;
-
+$primary: #6f42c1;
+$secondary: #17a2b8;

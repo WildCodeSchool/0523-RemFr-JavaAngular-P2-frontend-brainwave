@@ -1,23 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SecurityPageComponent } from './pages/security/security-page/security-page.component';
-import { LoginComponent } from './components/security/login/login.component';
+
+import { PromotionsComponent } from './pages/promotions/promotions.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
+import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
 import { RegisterComponent } from './components/security/register/register.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/security/login/login.component';
+import { SecurityPageComponent } from './pages/security/security-page/security-page.component';
 import { RouterModule } from '@angular/router';
-import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from './services/auth/auth-service.service';
+
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
+import { AuthService } from './services/auth/auth-service.service';
+import { AuthInterceptor } from './services/auth/auth-interceptor';
 
 @NgModule({
-  declarations: [AppComponent, SecurityPageComponent, LoginComponent, RegisterComponent, HomePagesComponent],
+  declarations: [
+    AppComponent,
+    PromotionsComponent,
+    ManagePromotionsComponent,
+    ParticipantsModalComponent,
+    SecurityPageComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomePagesComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,7 +42,14 @@ import { AuthGuard } from './services/auth/auth-guard.service';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [CookieService, AuthGuard, LoggedInAuthGuard, AuthService],
+  providers: [
+    CookieService,
+    AuthGuard,
+    LoggedInAuthGuard,
+    AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
