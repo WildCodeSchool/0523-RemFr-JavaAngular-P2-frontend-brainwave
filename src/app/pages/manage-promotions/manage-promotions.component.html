@@ -1,4 +1,9 @@
 <div *ngIf="promotionsData">
+  <p>
+    Actuellement,
+    <span class="number">{{ promotionsData.length }}</span>
+    cours sont disponibles
+  </p>
   <div class="promotion-card-container">
     <div class="promotion-card" *ngFor="let promotion of promotionsData">
       <h3>Name: {{ promotion.name }}</h3>

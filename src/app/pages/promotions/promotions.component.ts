@@ -4,7 +4,8 @@ import { Component, AfterViewInit, OnInit, EventEmitter, Output } from '@angular
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { Promotion } from 'src/models/Promotion';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth-service.service';
 
 @Component({
   selector: 'app-promotions',
@@ -20,12 +21,27 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
   picture: string;
   tag: string;
   createdPromoId: string;
-  constructor(private http: HttpClient, private userService: UserService, private router: Router) {
+  userConnected!: any;
+  userId!: string;
+
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    this.userConnected = this.authService.getUserConnected();
     this.textValue = '';
     this.description = '';
     this.picture = '';
     this.tag = '';
     this.createdPromoId = '';
+
+    this.authService.getUserConnected().subscribe((user: any) => {
+      this.userConnected = user;
+      this.userId = user?.userId;
+    });
   }
   openParticipantsModal(): void {
     this.showModal = true;
@@ -60,8 +76,12 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
     const emojiButton = this.quill.getModule('emoji-toolbar');
     emojiButton.initToolbar();
   }
-  sendText(): void {
+  createPromotion(): void {
     const descriptionText = this.quill.root.innerHTML;
+
+    console.log('connected', this.userConnected.userId);
+
+    // const url = `http://localhost:8080/promotions/${this.userId}`;
     const url = 'http://localhost:8080/promotions/857c8c7d-719e-444c-ab02-d0772bb7dc6d';
 
     const data = {
