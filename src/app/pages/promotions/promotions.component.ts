@@ -78,7 +78,6 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
     const descriptionText = this.quill.root.innerHTML;
 
     const userId = this.userConnected.id;
-
     const url = `http://localhost:8080/promotions/${userId}`;
 
     const data = {

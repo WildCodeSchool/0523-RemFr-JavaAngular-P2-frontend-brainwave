@@ -10,11 +10,11 @@ import { SecurityPageComponent } from './pages/security/security-page/security-p
 
 const routes: Routes = [
   {
-    path: 'createPromotions',
+    path: 'promotions/create',
     component: PromotionsComponent,
   },
   {
-    path: 'promotions/all',
+    path: 'promotions',
     component: ManagePromotionsComponent,
   },
   {
