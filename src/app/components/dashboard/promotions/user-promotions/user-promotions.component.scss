@@ -1,0 +1,149 @@
+.promotions-participated-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
+    width: 100%;
+}
+
+.header-promotions {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    text-align: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.button-join-promotion {
+    background-color: (var(--violet));
+    border: 0.3px solid black;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 3px 10px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 0;
+    color: black;
+    border-bottom: (var(--violet)) 4px solid;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    p {
+        margin: 0;
+    }
+}
+
+.show-more {
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    width: 70%;
+    text-align: end;
+    font-size: 18px;
+    color: (var(--violet));
+    cursor: pointer;
+    padding: 0;
+    -webkit-text-stroke: 0.5px black;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: flex-end;
+    p {
+        width: 100px;
+        margin: 0;
+    }
+}
+
+.all-promotions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.promo-card {
+    width: 300px;
+    height: 260px;
+    margin: 20px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    .header-card {
+        img {
+            width: 100%;
+            height: 70%;
+            border-radius: 5px;
+            border: 0.3px solid black;
+            box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        }
+    }
+    .body-card {
+        background-color: (var(--violet));
+        color: white;
+        padding: 10px 0;
+        height: 40%;
+        width: 100%;
+        margin-top: -8px;
+        border-radius: 0 0 5px 5px;
+        border: 0.3px solid black;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .promotion-detail-button {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            cursor: pointer;
+            p {
+                margin-right: 10px;
+                text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+            }
+            img {
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+                align-items: center;
+                vertical-align: middle;
+            }
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+        }
+    }
+}
+
+
+
+// ---------------------------- MOBILE ----------------------------
+
+@media (max-width: 768px) {
+    .promotions-participated-container {
+        margin-top: 100px;
+    }
+    .header-promotions {
+        width: 90%;
+    }
+    .button-join-promotion {
+        font-size: 14px;
+        width: 100px;
+    }
+    .title {
+        font-size: 16px;
+    }
+
+    .show-more {
+        width: 90%;
+        font-size: 16px;
+        p {
+            width: 80px;
+        }
+    }
+}
