@@ -21,19 +21,13 @@ export class AuthService {
   }
   getUserToken(): string | null {
     const token = this.cookieService.get('token');
-    try {
-      const payload: any = jwtDecode(token);
-      return payload.sub;
-    } catch (error) {
-      console.error('Invalid token:', error);
-      return null;
-    }
+    const payload: any = jwtDecode(token);
+    return payload.sub;
   }
 
   getUserConnected(): Observable<string> {
     const token = this.cookieService.get('token');
     const userId = this.getUserToken();
-
     const userConnectedUrl = `http://localhost:8080/users/${userId}`;
     console.log('service UserID', userConnectedUrl);
     return this.http.get<any>(userConnectedUrl);
