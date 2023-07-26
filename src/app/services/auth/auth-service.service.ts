@@ -22,7 +22,7 @@ export class AuthService {
   getUserToken(): string | null {
     const token = this.cookieService.get('token');
     const payload: any = jwtDecode(token);
-    return payload.sub;
+    return payload.userId;
   }
 
   getUserConnected(): Observable<string> {

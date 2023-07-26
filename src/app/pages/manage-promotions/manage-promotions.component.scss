@@ -4,9 +4,17 @@
   gap: 0.5rem;
   display: flex;
   justify-content: center;
+  text-transform: capitalize;
+
   .description {
     width: 80%;
     margin: 1rem;
+    text-transform: capitalize;
+  }
+  .description-text {
+    width: 90%;
+    word-wrap: break-word;
+    text-transform: capitalize;
   }
   .promotion-card {
     flex: 0 0 calc(33.3333% - 0.5rem);
@@ -14,12 +22,27 @@
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 0.5rem;
+    width: 10rem;
   }
-
+  li {
+    list-style: decimal;
+  }
   .promotion-card p {
     margin: 5px 0;
   }
-
+  .truncated-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 200px;
+    text-transform: capitalize;
+  }
+  .image-container {
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
   .promotion-card img {
     max-width: 100%;
     border-radius: 5px;
@@ -28,4 +51,44 @@
 }
 .number {
   color: var(--turquoise);
+}
+.manageButton {
+  display: flex;
+  justify-content: center;
+}
+button {
+  padding: 8px 15px;
+  margin-right: 10px;
+  background-color: var(--violet);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background-color: var(--turquoise);
+}
+.loader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

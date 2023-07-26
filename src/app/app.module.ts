@@ -21,6 +21,7 @@ import { AuthGuard } from './services/auth/auth-guard.service';
 import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
 import { AuthService } from './services/auth/auth-service.service';
 import { AuthInterceptor } from './services/auth/auth-interceptor';
+import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { AuthInterceptor } from './services/auth/auth-interceptor';
     LoginComponent,
     RegisterComponent,
     HomePagesComponent,
+    UpdatePromotionComponent,
   ],
   imports: [
     BrowserModule,

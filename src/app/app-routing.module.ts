@@ -7,6 +7,7 @@ import { ManagePromotionsComponent } from './pages/manage-promotions/manage-prom
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
 import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
 import { SecurityPageComponent } from './pages/security/security-page/security-page.component';
+import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'promotions',
     component: ManagePromotionsComponent,
+  },
+  {
+    path: 'promotion/:id',
+    component: UpdatePromotionComponent,
   },
   {
     path: 'addParticipants/:id',

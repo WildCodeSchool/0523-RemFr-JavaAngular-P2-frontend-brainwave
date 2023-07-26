@@ -1,44 +1,38 @@
-<div *ngIf="promotionsData">
+<div *ngIf="promotionsData; else loader">
   <p>
     Actuellement,
     <span class="number">{{ promotionsData.length }}</span>
     cours sont disponibles
   </p>
+
   <div class="promotion-card-container">
     <div class="promotion-card" *ngFor="let promotion of promotionsData">
-      <h3>Name: {{ promotion.name }}</h3>
-      <p>Tag: {{ promotion.tag }}</p>
-      <p>AuthorId: {{ promotion.authorId }}</p>
+      <h3 class="truncated-text">Titre: {{ promotion.name }}</h3>
+      <p>Tag : {{ promotion.tag }}</p>
+      <p>Par : {{ authorName }}</p>
       <div class="description">
         <p>Description:</p>
       </div>
-      <div [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
-      <p>Creation Date: {{ promotion.creationDate }}</p>
-      <p>ParticipantsIds:</p>
-      <ul>
-        <li *ngFor="let participantId of promotion.participantsIds">
-          {{ participantId }}
-        </li>
-      </ul>
-      <p>ResourceIds:</p>
-      <ul>
-        <li *ngFor="let resourceId of promotion.resourceIds">
-          {{ resourceId }}
-        </li>
-      </ul>
-      <p>TopicIds:</p>
-      <ul>
-        <li *ngFor="let topicId of promotion.topicIds">
-          {{ topicId }}
-        </li>
-      </ul>
+      <div class="description-text" [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
+      <p>Date de Creation : {{ formatDate(promotion.creationDate) }}</p>
       <p>Photo</p>
-      <div>
+      <div class="image-container">
         <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
       </div>
+      <a [routerLink]="['/promotion', promotion.id]">
+        <div class="manageButton">
+          <button class="manageButton" (click)="selectPromotionById(promotion.id)">Details</button>
+        </div>
+      </a>
     </div>
   </div>
 </div>
+<ng-template #loader>
+  <div class="loader-container" [@fadeInOut]>
+    <!-- Ajoutez ici votre modèle de loader personnalisé (par exemple, un spinner) -->
+    <p>Loading...</p>
+  </div>
+</ng-template>
 <div *ngIf="!promotionsData">
   <p>Promotion not found.</p>
 </div>
