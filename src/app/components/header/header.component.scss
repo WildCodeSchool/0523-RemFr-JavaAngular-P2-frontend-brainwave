@@ -81,8 +81,43 @@ nav.header-container {
 }
 
 .icon {
-  margin-left: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
   color: white;
   font-size: 20px;
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .menu-burger {
+    display: none; /* Cacher le menu burger */
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu {
+    display: flex;
+  }
+
+  .menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu li {
+    padding: 0 10px;
+  }
+
+  .menu li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+  }
 }

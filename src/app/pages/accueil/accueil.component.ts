@@ -10,6 +10,9 @@ export class AccueilComponent {
     { title: 'Titre Carré 1', content: 'Contenu Carré 1' },
     { title: 'Titre Carré 2', content: 'Contenu Carré 2' },
     { title: 'Titre Carré 3', content: 'Contenu Carré 3' },
+    { title: 'Titre Carré 4', content: 'Contenu Carré 4' },
+    { title: 'Titre Carré 5', content: 'Contenu Carré 5' },
+    { title: 'Titre Carré 6', content: 'Contenu Carré 6' },
   ];
 
   filteredSquares: { title: string; content: string }[];
