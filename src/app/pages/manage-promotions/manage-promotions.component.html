@@ -7,21 +7,17 @@
 
   <div class="promotion-card-container">
     <div class="promotion-card" *ngFor="let promotion of promotionsData">
-      <h3 class="truncated-text">Titre: {{ promotion.name }}</h3>
-      <p>Tag : {{ promotion.tag }}</p>
-      <p>Par : {{ authorName }}</p>
-      <div class="description">
-        <p>Description:</p>
-      </div>
-      <div class="description-text" [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
-      <p>Date de Creation : {{ formatDate(promotion.creationDate) }}</p>
-      <p>Photo</p>
       <div class="image-container">
         <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
       </div>
+      <h3 class="truncated-text">{{ promotion.name }}</h3>
       <a [routerLink]="['/promotion', promotion.id]">
-        <div class="manageButton">
-          <button class="manageButton" (click)="selectPromotionById(promotion.id)">Details</button>
+        <div class="buttonTag">
+          <p>{{ promotion.tag }}</p>
+          <div class="manageButton">
+            <button class="manageButton" (click)="selectPromotionById(promotion.id)">Details</button>
+            <img [src]="'assets/images/right-arrow.svg'" alt="arrow" height="100" width="100" />
+          </div>
         </div>
       </a>
     </div>
@@ -29,7 +25,6 @@
 </div>
 <ng-template #loader>
   <div class="loader-container" [@fadeInOut]>
-    <!-- Ajoutez ici votre modèle de loader personnalisé (par exemple, un spinner) -->
     <p>Loading...</p>
   </div>
 </ng-template>

@@ -1,6 +1,7 @@
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PromotionsService } from 'src/app/services/promotions.services';
@@ -18,6 +19,7 @@ type Participant = {
   templateUrl: './update-promotion.component.html',
   styleUrls: ['./update-promotion.component.scss'],
   providers: [DatePipe],
+  encapsulation: ViewEncapsulation.None,
 })
 export class UpdatePromotionComponent implements OnInit {
   promotion: any = [];
@@ -32,13 +34,15 @@ export class UpdatePromotionComponent implements OnInit {
   resources: any = [];
   topic: any;
   topics: any[] = [];
+  participants: any[] = [];
 
   constructor(
     private promotionsService: PromotionsService,
     private route: ActivatedRoute,
     private http: HttpClient,
     private userService: UserService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private sanitizer: DomSanitizer
   ) {}
   formatDate(date: string | null): string {
     if (date === null) {
@@ -46,7 +50,10 @@ export class UpdatePromotionComponent implements OnInit {
     }
     return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
   }
-
+  getSanitizedDescription(description: string): SafeHtml {
+    const sanitizedDescription = this.removeMediaFromDescription(description);
+    return this.sanitizer.bypassSecurityTrustHtml(sanitizedDescription);
+  }
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.promotionId = params.get('id');
@@ -108,10 +115,18 @@ export class UpdatePromotionComponent implements OnInit {
   }
 
   selectUser(userId: string): void {
-    if (!this.addUsers.includes(userId)) {
+    const selectedUser = this.searchResults.find((user) => user.id === userId);
+
+    if (selectedUser && !this.participants.find((participant) => participant.id === userId)) {
+      const fullName = selectedUser.firstname + ' ' + selectedUser.lastname;
+      this.participants.push({ id: userId, fullName: fullName });
       this.addUsers.push(userId);
       this.showDropdown = false;
       this.searchTerm = '';
+      const index = this.searchResults.findIndex((user) => user.id === userId);
+      if (index !== -1) {
+        this.searchResults.splice(index, 1);
+      }
     }
   }
 
@@ -146,8 +161,8 @@ export class UpdatePromotionComponent implements OnInit {
             console.log(`User with ID ${userId} updated successfully with promotion ID ${this.promotionId}`);
           });
         });
-        window.location.reload();
-        this.addUsers = [];
+
+        this.addUsers.push(this.promotion.participantsIds);
       },
       (error) => {
         console.error('Failed to add participants to promotion:', error);
@@ -175,29 +190,19 @@ export class UpdatePromotionComponent implements OnInit {
     const imgElement = doc.querySelector('img');
 
     if (imgElement) {
-      const imageUrl = imgElement.getAttribute('src');
-      if (imageUrl) {
-        return imageUrl;
-      }
+      return imgElement.getAttribute('src');
     }
 
     return null;
   }
-
-  // Fonction pour enlever la balise <img> de la description
   removeMediaFromDescription(description: string): string {
     const parser = new DOMParser();
     const doc = parser.parseFromString(description, 'text/html');
-    const imgElements = doc.querySelectorAll('img, Img');
-    const pElements = doc.querySelectorAll('p');
+    const imgElement = doc.querySelector('img');
 
-    imgElements.forEach((imgElement) => {
+    if (imgElement) {
       imgElement.remove();
-    });
-
-    pElements.forEach((pElement) => {
-      pElement.innerHTML = ''; // Remplace le contenu de la balise p par une chaîne vide
-    });
+    }
 
     return doc.documentElement.innerHTML;
   }

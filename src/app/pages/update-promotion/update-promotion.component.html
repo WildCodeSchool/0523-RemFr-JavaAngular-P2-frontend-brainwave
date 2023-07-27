@@ -4,14 +4,16 @@
   <p>Auteur: {{ authorName }}</p>
   <p>Titre: {{ promotion.name }}</p>
   <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
-  <!-- TODO revoir l'affichage des images ici -->
-  <div class="description-text" [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
+
+  <div>
+    <p>Video</p>
+    <div class="description-text" [innerHTML]="getSanitizedDescription(promotion.description)"></div>
+  </div>
 
   <p>Photo</p>
   <div class="image-container">
     <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
   </div>
-  <p>Description: {{ promotion.description }}</p>
   <p>Tag: {{ promotion.tag }}</p>
   <p>Ressources:</p>
 

@@ -10,16 +10,9 @@
   <div id="editor"></div>
   <button (click)="openParticipantsModal()"></button>
 
-  <!-- Modal -->
   <div class="modal-container" [ngClass]="{ 'show-modal': showModal }">
     <div class="modal-content">
-      <!-- TODO echanger -->
       <app-participants-modal *ngIf="showModal" (closeModal)="closeParticipantsModal()">Close</app-participants-modal>
-      <!-- <app-participants-modal
-        *ngIf="showModal"
-        [createdPromoId]="createdPromoId"
-        (closeModal)="closeParticipantsModal()"
-      ></app-participants-modal> -->
     </div>
   </div>
 
