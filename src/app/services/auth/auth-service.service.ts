@@ -28,7 +28,6 @@ export class AuthService {
   getUserConnected(): Observable<string> {
     const userId = this.getUserToken();
     const userConnectedUrl = `http://localhost:8080/users/${userId}`;
-    console.log('service UserID', userConnectedUrl);
     return this.http.get<string>(userConnectedUrl);
   }
 }

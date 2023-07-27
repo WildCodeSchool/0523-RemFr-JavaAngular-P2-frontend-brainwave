@@ -60,7 +60,6 @@ export class ManagePromotionsComponent implements OnInit {
 
   selectPromotionById(promoId: string): void {
     this.selectedPromotionId = promoId;
-    console.log(promoId);
   }
   getResourceLinkAndTitle(resourceId: string): Observable<string> {
     return this.promotionsService

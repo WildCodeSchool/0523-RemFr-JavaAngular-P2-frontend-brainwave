@@ -40,7 +40,7 @@ export class PromotionsService {
         lastname: author.lastname,
       };
     });
-    console.log(authorId);
+
     return this.httpClient.get<Promotion[]>(this.promoDataUrl);
   }
 
@@ -67,7 +67,6 @@ export class PromotionsService {
   }
 
   deletePromotion(id: string): Observable<void> {
-    console.log(id);
     const url = `${this.promoDataUrl}/${id}`;
     return this.httpClient.delete<void>(url);
   }

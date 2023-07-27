@@ -58,34 +58,27 @@ export class UpdatePromotionComponent implements OnInit {
     this.route.paramMap.subscribe((params) => {
       this.promotionId = params.get('id');
 
-      console.log('Promotion ID:', this.promotionId);
-
       this.promotionsService.getPromoById(this.promotionId).subscribe(
         (promotion) => {
           this.promotion = promotion;
-          console.log('Promotion Details:', this.promotion);
 
           this.authorId = this.promotion.authorId;
 
           this.userService.getUserName(this.authorId).subscribe((authorName: string) => {
             this.authorName = authorName;
-            console.log('Author Name:', this.authorName);
           });
           this.promotion.resourceIds.forEach((resourceId: string) => {
             this.getResourceLinkAndTitle(resourceId).subscribe((resource: any) => {
-              console.log(resource);
               this.resources.push(resource);
             });
           });
           this.promotion.topicIds.forEach((topicId: string) => {
             this.getTopic(topicId).subscribe((topic: any) => {
-              console.log(topic);
               this.topics.push(topic);
             });
           });
           this.promotion.participantsIds.forEach((participantId: string) => {
             this.promotionsService.getParticipantName(participantId).subscribe((participant: Participant) => {
-              console.log(participant);
               this.participantsMap.push(participant);
             });
           });
@@ -157,9 +150,7 @@ export class UpdatePromotionComponent implements OnInit {
       (response) => {
         this.addUsers.forEach((userId) => {
           const userData = { promotionId: this.promotionId };
-          this.userService.updateUserById(userId, userData).subscribe(() => {
-            console.log(`User with ID ${userId} updated successfully with promotion ID ${this.promotionId}`);
-          });
+          this.userService.updateUserById(userId, userData).subscribe();
         });
 
         this.addUsers.push(this.promotion.participantsIds);
