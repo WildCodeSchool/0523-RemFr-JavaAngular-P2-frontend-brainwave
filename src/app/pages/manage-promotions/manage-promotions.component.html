@@ -1,39 +1,33 @@
-<div *ngIf="promotionsData">
+<div *ngIf="promotionsData; else loader">
+  <p>
+    Actuellement,
+    <span class="number">{{ promotionsData.length }}</span>
+    cours sont disponibles
+  </p>
+
   <div class="promotion-card-container">
     <div class="promotion-card" *ngFor="let promotion of promotionsData">
-      <h3>Name: {{ promotion.name }}</h3>
-      <p>Tag: {{ promotion.tag }}</p>
-      <p>AuthorId: {{ promotion.authorId }}</p>
-      <div class="description">
-        <p>Description:</p>
-      </div>
-      <div [innerHTML]="removeMediaFromDescription(promotion.description)"></div>
-      <p>Creation Date: {{ promotion.creationDate }}</p>
-      <p>ParticipantsIds:</p>
-      <ul>
-        <li *ngFor="let participantId of promotion.participantsIds">
-          {{ participantId }}
-        </li>
-      </ul>
-      <p>ResourceIds:</p>
-      <ul>
-        <li *ngFor="let resourceId of promotion.resourceIds">
-          {{ resourceId }}
-        </li>
-      </ul>
-      <p>TopicIds:</p>
-      <ul>
-        <li *ngFor="let topicId of promotion.topicIds">
-          {{ topicId }}
-        </li>
-      </ul>
-      <p>Photo</p>
-      <div>
+      <div class="image-container">
         <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
       </div>
+      <h3 class="truncated-text">{{ promotion.name }}</h3>
+      <a [routerLink]="['/promotion', promotion.id]">
+        <div class="buttonTag">
+          <p>{{ promotion.tag }}</p>
+          <div class="manageButton">
+            <button class="manageButton" (click)="selectPromotionById(promotion.id)">Details</button>
+            <img [src]="'assets/images/right-arrow.svg'" alt="arrow" height="100" width="100" />
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </div>
+<ng-template #loader>
+  <div class="loader-container" [@fadeInOut]>
+    <p>Loading...</p>
+  </div>
+</ng-template>
 <div *ngIf="!promotionsData">
   <p>Promotion not found.</p>
 </div>
