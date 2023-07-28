@@ -30,20 +30,20 @@ export class UserService {
   }
 
   getAvatar(filename: string): Observable<Blob> {
-    return this.http.get(`http://localhost:8080/users/avatar/${filename}`, { responseType: 'blob' });
+    return this.httpClient.get(`http://localhost:8080/users/avatar/${filename}`, { responseType: 'blob' });
   }
 
   uploadAvatar(selectedFile: File | null, userId: string) {
     if (selectedFile) {
       const fd = new FormData();
       fd.append('avatar', selectedFile, selectedFile?.name);
-      return this.http.put<any>(`http://localhost:8080/users/${userId}/avatar`, fd);
+      return this.httpClient.put<any>(`http://localhost:8080/users/${userId}/avatar`, fd);
     } else {
       return;
     }
   }
 
   updateBio(id: string, user: any) {
-    return this.http.put<any>(`http://localhost:8080/users/${id}`, user);
+    return this.httpClient.put<any>(`http://localhost:8080/users/${id}`, user);
   }
 }
