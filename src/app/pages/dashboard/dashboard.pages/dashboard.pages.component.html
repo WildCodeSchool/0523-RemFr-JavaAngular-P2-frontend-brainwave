@@ -1,3 +1,6 @@
-<app-user-informations></app-user-informations>
-<app-user-promotions></app-user-promotions>
-<app-user-discussions></app-user-discussions>
+<div *ngIf="userData">
+  <app-user-informations [userData]="userData"></app-user-informations>
+  <app-user-promotions [promotions]="userPromotions"></app-user-promotions>
+  <app-user-discussions></app-user-discussions>
+</div>
+<div *ngIf="!userData">loading...</div>

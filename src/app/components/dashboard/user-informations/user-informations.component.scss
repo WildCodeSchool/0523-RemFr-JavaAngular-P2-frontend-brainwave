@@ -19,9 +19,9 @@ p {
     grid-row-gap: 0px;
     width: 70%;
 }
-    
-.image-container { 
-    grid-area: 2 / 1 / 5 / 2; 
+
+.image-container {
+    grid-area: 2 / 1 / 5 / 2;
     display: flex;
     justify-content: center;
     margin-right: 30px;
@@ -34,8 +34,8 @@ p {
     border: 5px solid #6F42C1;
 }
 
-.name-container { 
-    grid-area: 2 / 2 / 3 / 3; 
+.name-container {
+    grid-area: 2 / 2 / 3 / 3;
     display: flex;
     align-items: end;
 }
@@ -48,8 +48,8 @@ p {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.stats-container { 
-    grid-area: 4 / 2 / 5 / 3; 
+.stats-container {
+    grid-area: 4 / 2 / 5 / 3;
 }
 
 .stats-background {
@@ -62,7 +62,6 @@ p {
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
     display: flex;
     justify-content: space-evenly;
-    padding-right: 10px;
 }
 
 .stats-text-container {
@@ -102,6 +101,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .bio-container {
@@ -114,13 +114,109 @@ p {
     border: 0.3px solid black;
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     p {
         font-size: 18px;
         font-family: 'laton', sans-serif;
         color: white;
     }
+}
+
+.add-avatar {
+  position: relative;
+}
+
+.add-avatar-button {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.add-avatar-label {
+  position : absolute;
+  top: -10px;
+  right: -10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #6F42C1;
+  border: 0.3px solid black;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: 'laton', sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.bio-editing-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  background-color: #6F42C1;
+  border: 0.3px solid black;
+  box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-family: 'laton', sans-serif;
+  color: white;
+  cursor: pointer;
+  .edit-button {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.input-text-area-bio {
+  background: linear-gradient(180deg, #EEE 0%, rgba(223, 223, 223, 1) 100%);
+  width: 70%;
+  height: 60%;
+  text-align: center;
+  border-radius: 5px;
+  border: 0.3px solid black;
+  font-size: 18px;
+  font-family: 'laton', sans-serif;
+  color: #6F42C1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  resize: none;
+}
+
+.update-bio-button {
+  background: linear-gradient(180deg, #EEE 0%, rgba(223, 223, 223, 1) 100%);
+  width: 20%;
+  height: 12%;
+  text-align: center;
+  border-radius: 5px;
+  border: 0.3px solid black;
+  font-size: 18px;
+  font-family: 'laton', sans-serif;
+  color: #6F42C1;
+  cursor: pointer;
+}
+
+.bio-form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 // --------------------- Mobile ---------------------
@@ -131,32 +227,30 @@ p {
         align-items: center;
         justify-content: center;
     }
-    
+
     .stats-background {
         width: 100%;
         height: 100%;
         padding: 10px;
     }
-    
-    .stats-container { 
+
+    .stats-container {
         display: flex;
         width: 100%;
         height: 100%;
         background-color: #6F42C1;
         border-radius: 5px;
     }
-    
-    .image-container { 
+
+    .image-container {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
         height: 100%;
-        margin: 0;
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin: 20px 0;
     }
-    
+
     .image-container img {
         width: 200px;
         height: 200px;
@@ -174,7 +268,7 @@ p {
         text-align: center;
         padding-right: 5px;
     }
-    
+
     .title-stat {
         flex-wrap: wrap;
         font-size: 12px;
@@ -184,7 +278,7 @@ p {
         min-width: 60%;
         font-family: 'Lato', sans-serif;
     }
-    
+
     .count-stat {
         font-size: 20px;
         color: white;
@@ -204,5 +298,10 @@ p {
 
     .bio-container {
         width: 80%;
+    }
+
+    .add-avatar-label {
+      position : absolute;
+      top: -115px;
     }
 }

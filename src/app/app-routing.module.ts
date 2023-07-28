@@ -44,7 +44,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPagesComponent,
-  }
+  },
 ];
 
 @NgModule({
