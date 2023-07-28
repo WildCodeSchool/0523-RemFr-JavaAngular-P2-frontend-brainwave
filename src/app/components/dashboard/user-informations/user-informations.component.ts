@@ -31,7 +31,6 @@ export class UserInformationsComponent implements OnInit, OnDestroy {
     if (this.userData.avatar !== null) {
       this.loadAvatar();
     }
-    console.log(this.userData);
   }
 
   ngOnDestroy(): void {
