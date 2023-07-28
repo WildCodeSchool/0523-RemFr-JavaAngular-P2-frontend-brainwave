@@ -146,6 +146,9 @@ export class UpdatePromotionComponent implements OnInit {
   }
 
   addParticipants(): void {
+    //TODO revoir ici suppression user
+    // const newPromotionId = this.promotionsService.getCreatedPromotionId();
+
     this.promotionsService.addParticipantsToPromotion(this.promotionId, this.addUsers).subscribe(
       (response) => {
         this.addUsers.forEach((userId) => {

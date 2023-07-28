@@ -1,20 +1,20 @@
 <div *ngIf="promotion" class="promotion-details">
-  <h2>Promotion Details</h2>
+  <div class="image-container">
+    <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
+  </div>
+  <p>{{ promotion.tag }} {{ promotion.difficulty }}</p>
+  <p></p>
 
   <p>Auteur: {{ authorName }}</p>
-  <p>Titre: {{ promotion.name }}</p>
+  <p class="promo-title">{{ promotion.name }}</p>
   <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
 
   <div>
     <p>Video</p>
     <div class="description-text" [innerHTML]="getSanitizedDescription(promotion.description)"></div>
   </div>
+  <!-- <div class="description-text" [innerHTML]="removeMediaFromDescription(promotion.description)"></div> -->
 
-  <p>Photo</p>
-  <div class="image-container">
-    <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
-  </div>
-  <p>Tag: {{ promotion.tag }}</p>
   <p>Ressources:</p>
 
   <ul>
@@ -29,7 +29,7 @@
   </div>
   <p><strong>Participants:</strong></p>
   <ul>
-    <li *ngFor="let participant of participantsMap">
+    <li class="list" *ngFor="let participant of participantsMap">
       {{ participant.firstname }} {{ participant.lastname }}
       <button (click)="deleteParticipantFromPromotion(participant.id, promotion.authorId)">Supprimer</button>
     </li>

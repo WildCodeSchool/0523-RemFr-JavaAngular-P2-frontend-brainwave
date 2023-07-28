@@ -16,6 +16,7 @@ type Participant = {
   providedIn: 'root',
 })
 export class PromotionsService {
+  private createdPromotionId = '';
   private promoDataUrl = 'http://localhost:8080/promotions';
   constructor(private httpClient: HttpClient, private userService: UserService) {}
 
@@ -70,6 +71,7 @@ export class PromotionsService {
     const url = `${this.promoDataUrl}/${id}`;
     return this.httpClient.delete<void>(url);
   }
+  //TODO ici aussi
   addParticipantsToPromotion(promotionId: string, participantIds: string[]) {
     const url = `http://localhost:8080/promotions/${promotionId}/add-participants`;
     return this.httpClient.put(url, { participants: participantIds });
@@ -83,5 +85,13 @@ export class PromotionsService {
   geTopicById(topicId: string): Observable<any> {
     const url = `http://localhost:8080/topics/${topicId}`;
     return this.httpClient.get<any>(url);
+  }
+  setCreatedPromotionId(promotionId: string): void {
+    this.createdPromotionId = promotionId;
+    console.log('Promotion ID stored:', this.createdPromotionId);
+  }
+
+  getCreatedPromotionId(): string {
+    return this.createdPromotionId;
   }
 }

@@ -8,13 +8,14 @@
 </div>
 <div class="addParticipants">
   <div id="editor"></div>
-  <button (click)="openParticipantsModal()"></button>
+  <!-- <button (click)="openParticipantsModal()"></button> -->
 
-  <div class="modal-container" [ngClass]="{ 'show-modal': showModal }">
+  <!-- <div class="modal-container" [ngClass]="{ 'show-modal': showModal }">
     <div class="modal-content">
       <app-participants-modal *ngIf="showModal" (closeModal)="closeParticipantsModal()">Close</app-participants-modal>
     </div>
-  </div>
+  </div> -->
+  <app-participants-modal *ngIf="showModal" [createdPromoId]="createdPromoId"></app-participants-modal>
 
   <div class="Button">
     <button class="PromoButton" (click)="createPromotion()">Envoyer</button>

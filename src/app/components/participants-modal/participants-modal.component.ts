@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { PromotionsService } from 'src/app/services/promotions.services';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-participants-modal',
@@ -10,7 +12,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ParticipantsModalComponent implements OnInit {
   @Input()
-  createdPromoId!: string;
+  createdPromoId: any;
+  @Output() closeModal: EventEmitter<void> = new EventEmitter<void>();
 
   participantsIds: string;
   participants: any[] = [];
@@ -23,7 +26,12 @@ export class ParticipantsModalComponent implements OnInit {
   createdPromotionId: string | null;
   addUsers: Array<string> = [];
 
-  constructor(private http: HttpClient, private userService: UserService, private route: ActivatedRoute) {
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private promotionsService: PromotionsService
+  ) {
     this.participantsIds = '';
     this.participants = [];
     this.participantName = '';
@@ -40,7 +48,9 @@ export class ParticipantsModalComponent implements OnInit {
 
     this.createdPromoId;
   }
-
+  onCloseModal(): void {
+    this.closeModal.emit();
+  }
   onFocus(): void {
     if (this.searchTerm.length >= 2) {
       this.showDropdown = true;
@@ -79,10 +89,10 @@ export class ParticipantsModalComponent implements OnInit {
       this.addUsers.push(userId);
     }
   }
-
+  //TODO ici sinon revenir sur le repo
   addParticipantToPromotion(): void {
-    //TODO modifier ici
-    const url = `http://localhost:8080/promotions/${this.createdPromotionId}/add-participants`;
+    const newPromotionId = this.promotionsService.getCreatedPromotionId();
+    const url = `http://localhost:8080/promotions/${newPromotionId}/add-participants`;
 
     this.http.put(url, { participants: this.addUsers }).subscribe(
       (response) => {

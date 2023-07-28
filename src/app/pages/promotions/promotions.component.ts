@@ -7,6 +7,8 @@ import { Promotion } from 'src/models/Promotion';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth-service.service';
 
+import { PromotionsService } from 'src/app/services/promotions.services';
+
 @Component({
   selector: 'app-promotions',
   templateUrl: './promotions.component.html',
@@ -27,9 +29,11 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
   constructor(
     private http: HttpClient,
     private userService: UserService,
+    private promotionsService: PromotionsService,
     private router: Router,
     private authService: AuthService
   ) {
+    this.createdPromoId = this.promotionsService.getCreatedPromotionId();
     this.userConnected = this.authService.getUserConnected();
     this.textValue = '';
     this.description = '';
@@ -93,8 +97,10 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
         this.promoAdded.emit(response);
         alert('La promotion est créée avec succès !');
         this.createdPromoId;
-
-        this.router.navigate(['/addParticipants', createdPromotionId]);
+        this.promotionsService.setCreatedPromotionId(createdPromotionId);
+        this.showModal = true;
+        // this.router.navigate(['/addParticipants', createdPromotionId]);
+        console.log(this.promotionsService.setCreatedPromotionId(createdPromotionId));
       },
       (error) => {
         console.error('Failed to create promotion', error);
