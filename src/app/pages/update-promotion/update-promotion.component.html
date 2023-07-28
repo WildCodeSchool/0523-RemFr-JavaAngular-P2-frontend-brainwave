@@ -1,0 +1,56 @@
+<div *ngIf="promotion" class="promotion-details">
+  <h2>Promotion Details</h2>
+
+  <p>Auteur: {{ authorName }}</p>
+  <p>Titre: {{ promotion.name }}</p>
+  <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
+
+  <div>
+    <p>Video</p>
+    <div class="description-text" [innerHTML]="getSanitizedDescription(promotion.description)"></div>
+  </div>
+
+  <p>Photo</p>
+  <div class="image-container">
+    <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
+  </div>
+  <p>Tag: {{ promotion.tag }}</p>
+  <p>Ressources:</p>
+
+  <ul>
+    <li *ngFor="let resource of resources">{{ resource.link }} {{ resource.title }}</li>
+  </ul>
+  <p>Discussions:</p>
+  <ul>
+    <li *ngFor="let topic of topics">{{ topic.upvote }} {{ topic.title }}</li>
+  </ul>
+  <div *ngIf="topic">
+    <h3>{{ topic }}</h3>
+  </div>
+  <p><strong>Participants:</strong></p>
+  <ul>
+    <li *ngFor="let participant of participantsMap">
+      {{ participant.firstname }} {{ participant.lastname }}
+      <button (click)="deleteParticipantFromPromotion(participant.id, promotion.authorId)">Supprimer</button>
+    </li>
+  </ul>
+  <h3>Ajouter des étudiants</h3>
+  <input type="text" [(ngModel)]="searchTerm" (input)="searchParticipants()" placeholder="Search participants" />
+  <ul *ngIf="showDropdown" class="search-results">
+    <li *ngFor="let participant of searchResults" (click)="selectUser(participant.id)">
+      {{ participant.firstname }} {{ participant.lastname }}
+    </li>
+  </ul>
+  <div class="selected-participants">
+    <h4>Participants sélectionnés :</h4>
+    <ul>
+      <li *ngFor="let participantId of addUsers">
+        {{ getParticipantName(participantId) }}
+      </li>
+    </ul>
+  </div>
+  <div class="buttonUpdate">
+    <button (click)="onDeletePromotion(promotionId)">Supprimer la Promotion</button>
+    <button (click)="addParticipants()">Ajouter Participants</button>
+  </div>
+</div>

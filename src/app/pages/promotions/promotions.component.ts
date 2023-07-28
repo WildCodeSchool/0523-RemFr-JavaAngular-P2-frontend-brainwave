@@ -5,11 +5,12 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { Promotion } from 'src/models/Promotion';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth-service.service';
 
 @Component({
   selector: 'app-promotions',
   templateUrl: './promotions.component.html',
-  styleUrls: ['./promotions.component.scss', '../../../styles.scss'],
+  styleUrls: ['./promotions.component.scss'],
 })
 export class PromotionsComponent implements AfterViewInit, OnInit {
   @Output() promoAdded: EventEmitter<Promotion> = new EventEmitter<Promotion>();
@@ -20,12 +21,25 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
   picture: string;
   tag: string;
   createdPromoId: string;
-  constructor(private http: HttpClient, private userService: UserService, private router: Router) {
+  userConnected!: any;
+  userId!: string;
+
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.userConnected = this.authService.getUserConnected();
     this.textValue = '';
     this.description = '';
     this.picture = '';
     this.tag = '';
     this.createdPromoId = '';
+    this.authService.getUserConnected().subscribe((user: any) => {
+      this.userConnected = user;
+      this.userId = user?.userId;
+    });
   }
   openParticipantsModal(): void {
     this.showModal = true;
@@ -60,9 +74,11 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
     const emojiButton = this.quill.getModule('emoji-toolbar');
     emojiButton.initToolbar();
   }
-  sendText(): void {
+  createPromotion(): void {
     const descriptionText = this.quill.root.innerHTML;
-    const url = 'http://localhost:8080/promotions/857c8c7d-719e-444c-ab02-d0772bb7dc6d';
+
+    const userId = this.userConnected.id;
+    const url = `http://localhost:8080/promotions/${userId}`;
 
     const data = {
       description: descriptionText,
@@ -82,29 +98,6 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
       },
       (error) => {
         console.error('Failed to create promotion', error);
-      }
-    );
-  }
-
-  onImageChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.picture = file;
-    }
-  }
-
-  uploadImage(promotionId: string): void {
-    const uploadUrl = 'http://localhost:8080/upload-image';
-    const formData: FormData = new FormData();
-    formData.append('picture', this.picture);
-    formData.append('promotionId', promotionId);
-
-    this.http.post(uploadUrl, formData).subscribe(
-      (response: any) => {
-        console.info('Image uploaded successfully!', response);
-      },
-      (error) => {
-        console.error('Failed to upload image', error);
       }
     );
   }

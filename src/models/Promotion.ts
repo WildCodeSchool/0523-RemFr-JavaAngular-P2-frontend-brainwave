@@ -1,4 +1,5 @@
 export class Promotion {
+  participantName!: string;
   constructor(
     public id: string,
     public name: string,

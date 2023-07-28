@@ -24,6 +24,7 @@ import { AccueilComponent } from './pages/accueil/accueil.component';
 import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
 import { AuthService } from './services/auth/auth-service.service';
 import { AuthInterceptor } from './services/auth/auth-interceptor';
+import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
 
 @NgModule({
   declarations: [
@@ -35,9 +36,13 @@ import { AuthInterceptor } from './services/auth/auth-interceptor';
     LoginComponent,
     RegisterComponent,
     HomePagesComponent,
+<<<<<<< HEAD
     HeaderComponent,
     FooterComponent,
     AccueilComponent,
+=======
+    UpdatePromotionComponent,
+>>>>>>> cef54ad54ae5e90eb27c4f61519c91c8746007ff
   ],
   imports: [
     BrowserModule,
