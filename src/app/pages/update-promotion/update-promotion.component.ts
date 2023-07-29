@@ -54,13 +54,13 @@ export class UpdatePromotionComponent implements OnInit {
     return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
   }
 
-  onRatingChanged(newRating: number) {
-    this.currentRating = newRating;
+  onRatingChanged(rating: number) {
+    this.currentRating = rating;
+    this.isVoteModified = true;
   }
-
   saveVote() {
     if (this.newRating >= 0 && this.newRating <= 5) {
-      this.promotionsService.addRating(this.promotionId, this.newRating);
+      this.promotionsService.addRating(this.promotionId, this.newRating, this.authorId);
       this.isVoteModified = false;
       this.newRating = 0;
     }

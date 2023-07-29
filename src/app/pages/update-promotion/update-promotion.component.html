@@ -1,5 +1,6 @@
 <div *ngIf="promotion" class="promotion-details">
-  <p>{{ promotion.rating }}</p>
+  <!-- TODO conversion etoile en float -->
+  <!-- <p>{{ promotion.rating }}</p> -->
   <app-star-rating [totalStars]="5" [rating]="currentRating" (ratingChanged)="onRatingChanged($event)"></app-star-rating>
   <button *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le vote</button>
   
