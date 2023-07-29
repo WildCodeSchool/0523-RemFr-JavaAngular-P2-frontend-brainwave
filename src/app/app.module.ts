@@ -36,13 +36,10 @@ import { UpdatePromotionComponent } from './pages/update-promotion/update-promot
     LoginComponent,
     RegisterComponent,
     HomePagesComponent,
-<<<<<<< HEAD
     HeaderComponent,
     FooterComponent,
     AccueilComponent,
-=======
     UpdatePromotionComponent,
->>>>>>> cef54ad54ae5e90eb27c4f61519c91c8746007ff
   ],
   imports: [
     BrowserModule,
