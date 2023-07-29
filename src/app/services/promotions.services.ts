@@ -76,6 +76,28 @@ export class PromotionsService {
     const url = `http://localhost:8080/promotions/${promotionId}/add-participants`;
     return this.httpClient.put(url, { participants: participantIds });
   }
+  addRating(promotionId: string, userRating: number) {
+    const url = `http://localhost:8080/promotions/${promotionId}`;
+
+    this.httpClient.get<any>(url).subscribe(promotion => {
+      const currentRating = promotion.rating || 0; 
+      const totalRatings = promotion.participants?.length || 0; 
+
+      const newRating = (currentRating * totalRatings + userRating) / (totalRatings + 1);
+
+      this.httpClient.put<any>(url, { rating: newRating }).subscribe(updatedPromotion => {
+        console.log('Promotion mise à jour avec le vote :', updatedPromotion);
+      }, error => {
+        console.error('Erreur lors de la mise à jour de la promotion :', error);
+      });
+    }, error => {
+      console.error('Erreur lors de la récupération de la promotion :', error);
+    });
+  }
+
+
+
+
 
   getResourceById(resourceId: string): Observable<any> {
     const url = `http://localhost:8080/resources/${resourceId}`;

@@ -1,24 +1,26 @@
 <div *ngIf="promotion" class="promotion-details">
+  <p>{{ promotion.rating }}</p>
+  <app-star-rating [totalStars]="5" [rating]="currentRating" (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+  <button *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le vote</button>
+  
   <div class="image-container">
     <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
   </div>
-  <div class="all-text">
-  <p>{{ promotion.tag }} {{ promotion.difficulty }}</p>
-  <p></p>
 
-  <p>Auteur: {{ authorName }}</p>
-  <p class="promo-title">{{ promotion.name }}</p>
-  <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
-</div>
+  <div class="all-text">
+    <p>{{ promotion.tag }} {{ promotion.difficulty }}</p>
+    <p></p>
+    <p>Auteur: {{ authorName }}</p>
+    <p class="promo-title">{{ promotion.name }}</p>
+    <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
+  </div>
+
   <div>
-   
     <div class="description-text" [innerHTML]="getSanitizedDescription(promotion.description)"></div>
   </div>
-  <!-- <div class="description-text" [innerHTML]="removeMediaFromDescription(promotion.description)"></div> -->
 
   <div class="tabs">
-    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'participants' }"
-      (click)="showTab('participants')">
+    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'participants' }" (click)="showTab('participants')">
       Participants
     </button>
     <button class="tabs-button" [ngClass]="{ active: selectedTab === 'resources' }" (click)="showTab('resources')">
@@ -27,7 +29,6 @@
     <button class="tabs-button" [ngClass]="{ active: selectedTab === 'topics' }" (click)="showTab('topics')">
       Discussions
     </button>
-
   </div>
 
   <div class="participant">
@@ -47,13 +48,13 @@
 
     <div *ngIf="selectedTab === 'participants'">
       <div>
-
         <p>Participants:</p>
         <ul>
           <li class="list" *ngFor="let participant of participantsMap">
             {{ participant.firstname }} {{ participant.lastname }}
-            <button class="update-button"
-              (click)="deleteParticipantFromPromotion(participant.id, promotion.authorId)">Supprimer</button>
+            <button class="update-button" (click)="deleteParticipantFromPromotion(participant.id, promotion.authorId)">
+              Supprimer
+            </button>
           </li>
         </ul>
       </div>
@@ -66,6 +67,7 @@
           {{ participant.firstname }} {{ participant.lastname }}
         </li>
       </ul>
+
       <div class="selected-participants">
         <h4>Participants sélectionnés :</h4>
         <ul>
@@ -82,7 +84,5 @@
 
   <div class="buttonUpdate">
     <button class="update-button" (click)="onDeletePromotion(promotionId)">Supprimer la Promotion</button>
-
   </div>
-
 </div>

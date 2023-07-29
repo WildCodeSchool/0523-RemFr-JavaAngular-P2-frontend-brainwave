@@ -6,6 +6,8 @@
 
 <div class="promotion-card-container">
   <div class="promotion-card" *ngFor="let promotion of promotionsData">
+    <p>note:{{promotion.rating}}</p>
+
     <div class="promo-card">
       <div class="header-card">
         <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />

@@ -36,6 +36,9 @@ export class UpdatePromotionComponent implements OnInit {
   topics: any[] = [];
   participants: any[] = [];
   selectedTab: string = 'participants'; 
+  isVoteModified: boolean = false;
+  currentRating = 3;
+  newRating: number = 0;
   constructor(
     private promotionsService: PromotionsService,
     private route: ActivatedRoute,
@@ -50,7 +53,18 @@ export class UpdatePromotionComponent implements OnInit {
     }
     return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
   }
-  getSanitizedDescription(description: string): SafeHtml {
+
+  onRatingChanged(newRating: number) {
+    this.currentRating = newRating;
+  }
+
+  saveVote() {
+    if (this.newRating >= 0 && this.newRating <= 5) {
+      this.promotionsService.addRating(this.promotionId, this.newRating);
+      this.isVoteModified = false;
+      this.newRating = 0;
+    }
+  }  getSanitizedDescription(description: string): SafeHtml {
     const sanitizedDescription = this.removeMediaFromDescription(description);
     return this.sanitizer.bypassSecurityTrustHtml(sanitizedDescription);
   }

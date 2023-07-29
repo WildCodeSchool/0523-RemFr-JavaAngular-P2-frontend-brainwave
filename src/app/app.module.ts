@@ -27,6 +27,7 @@ import { UserPromotionsComponent } from './components/dashboard/promotions/user-
 import { UserDiscussionsComponent } from './components/dashboard/discussions/user-discussions/user-discussions.component';
 import {NgOptimizedImage} from "@angular/common";
 import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { UpdatePromotionComponent } from './pages/update-promotion/update-promot
     UserPromotionsComponent,
     UserDiscussionsComponent,
     UpdatePromotionComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,
