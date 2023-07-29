@@ -35,7 +35,7 @@ export class UpdatePromotionComponent implements OnInit {
   topic: any;
   topics: any[] = [];
   participants: any[] = [];
-
+  selectedTab: string = 'participants'; 
   constructor(
     private promotionsService: PromotionsService,
     private route: ActivatedRoute,
@@ -89,6 +89,9 @@ export class UpdatePromotionComponent implements OnInit {
       );
     });
   }
+showTab(tab: string): void {
+  this.selectedTab = tab;
+}
 
   getResourceLinkAndTitle(resourceId: string): Observable<any> {
     return this.promotionsService.getResourceById(resourceId);
@@ -124,6 +127,7 @@ export class UpdatePromotionComponent implements OnInit {
   }
 
   searchParticipants(): void {
+    this.searchResults = [];
     if (this.searchTerm.length >= 2) {
       const data = {
         content: this.searchTerm,
@@ -135,16 +139,18 @@ export class UpdatePromotionComponent implements OnInit {
     } else {
       this.showDropdown = false;
     }
+  
   }
 
   getParticipantName(userId: string): string {
-    const participant = this.searchResults.find((p) => p.id === userId);
+    const participant = this.participantsMap.find((p: Participant) => p.id === userId);
+  
     if (participant) {
       return `${participant.firstname} ${participant.lastname}`;
     }
     return '';
   }
-
+  
   addParticipants(): void {
     //TODO revoir ici suppression user
     // const newPromotionId = this.promotionsService.getCreatedPromotionId();
@@ -155,8 +161,10 @@ export class UpdatePromotionComponent implements OnInit {
           const userData = { promotionId: this.promotionId };
           this.userService.updateUserById(userId, userData).subscribe();
         });
-
-        this.addUsers.push(this.promotion.participantsIds);
+        console.log(this.addUsers);
+        
+// this.addUsers=[]
+//         this.addUsers.push(this.promotion.participantsIds);
       },
       (error) => {
         console.error('Failed to add participants to promotion:', error);

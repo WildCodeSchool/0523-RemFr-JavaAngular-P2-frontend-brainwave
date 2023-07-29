@@ -1,28 +1,41 @@
 body {
   font-family: Arial, sans-serif;
   color: white;
-
+.all-text{
+  margin: 2rem;
+}
   .image-container {
+    margin: 3rem;
     display: flex;
     align-content: center;
     justify-content: center;
+
     img {
       height: 12rem;
       width: 12rem;
       border-radius: 50%;
     }
   }
+
   .promotion-details {
     background: linear-gradient(180deg, #52338a 0%, #40286d 100%);
 
     margin: 0 auto;
-    padding: 20px;
+
     border: 1px solid #ccc;
 
     word-wrap: break-word;
     text-transform: capitalize;
   }
+
+  .promo-title {
+    width: 185px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
   .description-text {
+
     display: flex;
     width: 310px;
     height: 256px;
@@ -59,17 +72,20 @@ body {
     justify-content: space-around;
     color: var(--violet);
   }
-  .list {
-    color: #ccc;
+
+  .list li {
+    color: var(--violet);
   }
+
   li button {
     margin-left: 10px;
   }
 
   input[type='text'] {
-    width: 100%;
+    width: 95%;
     padding: 5px;
-    margin: 10px 0;
+    color: var(--violet);
+    
   }
 
   .selected-participants {
@@ -83,7 +99,7 @@ body {
     padding-left: 20px;
   }
 
-  button {
+  .update-button {
     padding: 8px 15px;
     margin-right: 10px;
     background-color: var(--violet);
@@ -93,9 +109,27 @@ body {
     cursor: pointer;
   }
 
-  button:hover {
+  .update-button:hover {
     background-color: var(--turquoise);
   }
+
+  .tabs {
+    display: flex;
+
+    .tabs-button {
+      flex-basis: calc(33.33% - 2px);
+      border-right: 2px solid #17A2B8;
+      background: linear-gradient(180deg, #52338A 0%, #40286D 100%);
+      width: 195px;
+      height: 38px;
+      transform: skewX(-20deg); 
+    }
+  }
+
+  .tabs-button.active {
+    background: var(--violet);
+  }
+
 
   .search-results {
     list-style: none;
@@ -112,8 +146,16 @@ body {
   .search-results li:hover {
     background-color: #e5e5e5;
   }
+
   .buttonUpdate {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+  margin: 2rem;
+    background:none;
   }
 }
+
+.participant {
+  background-color: #e5e5e5;
+  color: var(--violet);
+  padding: 1rem; }

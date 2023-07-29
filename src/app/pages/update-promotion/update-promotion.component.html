@@ -2,55 +2,87 @@
   <div class="image-container">
     <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
   </div>
+  <div class="all-text">
   <p>{{ promotion.tag }} {{ promotion.difficulty }}</p>
   <p></p>
 
   <p>Auteur: {{ authorName }}</p>
   <p class="promo-title">{{ promotion.name }}</p>
   <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
-
+</div>
   <div>
-    <p>Video</p>
+   
     <div class="description-text" [innerHTML]="getSanitizedDescription(promotion.description)"></div>
   </div>
   <!-- <div class="description-text" [innerHTML]="removeMediaFromDescription(promotion.description)"></div> -->
 
-  <p>Ressources:</p>
+  <div class="tabs">
+    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'participants' }"
+      (click)="showTab('participants')">
+      Participants
+    </button>
+    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'resources' }" (click)="showTab('resources')">
+      Ressources
+    </button>
+    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'topics' }" (click)="showTab('topics')">
+      Discussions
+    </button>
 
-  <ul>
-    <li *ngFor="let resource of resources">{{ resource.link }} {{ resource.title }}</li>
-  </ul>
-  <p>Discussions:</p>
-  <ul>
-    <li *ngFor="let topic of topics">{{ topic.upvote }} {{ topic.title }}</li>
-  </ul>
-  <div *ngIf="topic">
-    <h3>{{ topic }}</h3>
   </div>
-  <p><strong>Participants:</strong></p>
-  <ul>
-    <li class="list" *ngFor="let participant of participantsMap">
-      {{ participant.firstname }} {{ participant.lastname }}
-      <button (click)="deleteParticipantFromPromotion(participant.id, promotion.authorId)">Supprimer</button>
-    </li>
-  </ul>
-  <h3>Ajouter des étudiants</h3>
-  <input type="text" [(ngModel)]="searchTerm" (input)="searchParticipants()" placeholder="Search participants" />
-  <ul *ngIf="showDropdown" class="search-results">
-    <li *ngFor="let participant of searchResults" (click)="selectUser(participant.id)">
-      {{ participant.firstname }} {{ participant.lastname }}
-    </li>
-  </ul>
-  <div class="selected-participants">
-    <h4>Participants sélectionnés :</h4>
-    <ul>
-      <li *ngFor="let participantId of addUsers">
-        {{ getParticipantName(participantId) }}
-      </li>
-    </ul>
+
+  <div class="participant">
+    <div *ngIf="selectedTab === 'resources'">
+      <p>Ressources:</p>
+      <ul>
+        <li *ngFor="let resource of resources">{{ resource.link }} {{ resource.title }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedTab === 'topics'">
+      <p>Discussions:</p>
+      <ul>
+        <li *ngFor="let topic of topics">{{ topic.upvote }} {{ topic.title }}</li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedTab === 'participants'">
+      <div>
+
+        <p>Participants:</p>
+        <ul>
+          <li class="list" *ngFor="let participant of participantsMap">
+            {{ participant.firstname }} {{ participant.lastname }}
+            <button class="update-button"
+              (click)="deleteParticipantFromPromotion(participant.id, promotion.authorId)">Supprimer</button>
+          </li>
+        </ul>
+      </div>
+
+      <h3>Ajouter des étudiants</h3>
+
+      <input type="text" [(ngModel)]="searchTerm" (input)="searchParticipants()" placeholder="Search participants" />
+      <ul *ngIf="showDropdown" class="search-results">
+        <li *ngFor="let participant of searchResults" (click)="selectUser(participant.id)">
+          {{ participant.firstname }} {{ participant.lastname }}
+        </li>
+      </ul>
+      <div class="selected-participants">
+        <h4>Participants sélectionnés :</h4>
+        <ul>
+          <li *ngFor="let participantId of addUsers">
+            {{ getParticipantName(participantId) }}
+          </li>
+        </ul>
+        <div class="buttonUpdate">
+          <button class="update-button" (click)="addParticipants()">Ajouter Participants</button>
+        </div>
+      </div>
+    </div>
   </div>
+
   <div class="buttonUpdate">
-    <button (click)="onDeletePromotion(promotionId)">Supprimer la Promotion</button>
-    <button (click)="addParticipants()">Ajouter Participants</button>
+    <button class="update-button" (click)="onDeletePromotion(promotionId)">Supprimer la Promotion</button>
+
   </div>
+
 </div>

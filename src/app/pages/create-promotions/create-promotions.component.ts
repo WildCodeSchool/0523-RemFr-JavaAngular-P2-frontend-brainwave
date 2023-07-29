@@ -11,10 +11,10 @@ import { PromotionsService } from 'src/app/services/promotions.services';
 
 @Component({
   selector: 'app-promotions',
-  templateUrl: './promotions.component.html',
-  styleUrls: ['./promotions.component.scss'],
+  templateUrl: './create-promotions.component.html',
+  styleUrls: ['./create-promotions.component.scss'],
 })
-export class PromotionsComponent implements AfterViewInit, OnInit {
+export class CreatePromotionsComponent implements AfterViewInit, OnInit {
   @Output() promoAdded: EventEmitter<Promotion> = new EventEmitter<Promotion>();
   showModal = false;
   quill!: Quill;
@@ -99,7 +99,7 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
         this.createdPromoId;
         this.promotionsService.setCreatedPromotionId(createdPromotionId);
         this.showModal = true;
-        // this.router.navigate(['/addParticipants', createdPromotionId]);
+        this.router.navigate(['/']);
         console.log(this.promotionsService.setCreatedPromotionId(createdPromotionId));
       },
       (error) => {

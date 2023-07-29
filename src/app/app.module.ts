@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { PromotionsComponent } from './pages/promotions/promotions.component';
+import { CreatePromotionsComponent } from './pages/create-promotions/create-promotions.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
@@ -26,7 +26,7 @@ import { UpdatePromotionComponent } from './pages/update-promotion/update-promot
 @NgModule({
   declarations: [
     AppComponent,
-    PromotionsComponent,
+    CreatePromotionsComponent,
     ManagePromotionsComponent,
     ParticipantsModalComponent,
     SecurityPageComponent,
