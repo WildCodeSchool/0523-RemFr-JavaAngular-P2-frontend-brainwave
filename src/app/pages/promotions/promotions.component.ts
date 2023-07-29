@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { Promotion } from 'src/models/Promotion';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth-service.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-promotions',
