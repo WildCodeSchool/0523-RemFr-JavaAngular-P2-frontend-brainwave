@@ -35,8 +35,15 @@ body {
     flex-direction: row-reverse;
     align-items: flex-end;
   }
-
-  .promo-title {
+.tag{
+  height: max-content;
+  background-color: #DFDFDF;
+  border-radius: 1.3rem;
+  width: 4rem;
+  text-align: center;
+  color: #40286d;
+}
+  .promo-title p{
     width: 185px;
     height: 18px;
     flex-shrink: 0;
@@ -50,8 +57,13 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
+    p{
+      margin: 3rem;
+      text-transform: capitalize;
+      text-align: center;
+     }
   }
-
+ 
   h2 {
     margin-bottom: 10px;
   }
@@ -64,10 +76,14 @@ body {
     margin: 10px 0;
   }
 
-  p {
-    margin: 5px 0;
-    display: flex;
-    justify-content: center;
+  .promo-title  {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 34px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 1.5rem;
   }
 
   ul {

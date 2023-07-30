@@ -22,6 +22,9 @@ export class CreatePromotionsComponent implements AfterViewInit, OnInit {
   description: string;
   picture: string;
   tag: string;
+  type: string;
+  difficulty: string;
+  rating: number;
   createdPromoId: string;
   userConnected!: any;
   userId!: string;
@@ -39,6 +42,9 @@ export class CreatePromotionsComponent implements AfterViewInit, OnInit {
     this.description = '';
     this.picture = '';
     this.tag = '';
+    this.type = '';
+    this.difficulty = '';
+    this.rating = 3.5;
     this.createdPromoId = '';
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
@@ -83,11 +89,15 @@ export class CreatePromotionsComponent implements AfterViewInit, OnInit {
 
     const userId = this.userConnected.id;
     const url = `http://localhost:8080/promotions/${userId}`;
-
+    console.log('Picture:', this.picture);
     const data = {
       description: descriptionText,
       name: this.textValue,
+      picture: this.picture,
       tag: this.tag,
+      type: this.type,
+      difficulty: this.difficulty,
+      rating: this.rating,
     };
 
     this.http.post<Promotion>(url, data).subscribe(

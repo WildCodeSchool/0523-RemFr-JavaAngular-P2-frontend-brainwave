@@ -213,6 +213,14 @@ export class UpdatePromotionComponent implements OnInit {
 
     return null;
   }
+  getPromotionImageUrl():any{
+    if (this.promotion.picture) {
+      return this.promotion.picture;
+    } else {
+      return this.getMediaUrlFromDescription(this.promotion.description);
+    }
+  }
+
   removeMediaFromDescription(description: string): string {
     const parser = new DOMParser();
     const doc = parser.parseFromString(description, 'text/html');

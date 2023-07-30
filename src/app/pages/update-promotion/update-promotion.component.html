@@ -9,15 +9,21 @@
 
   </div>
 
-  <div class="image-container">
+  <!-- <div class="image-container">
     <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
+  </div> -->
+  <div class="image-container">
+    <img [src]="getPromotionImageUrl()" alt="Promotion Image" />
   </div>
+  
+  <h2 class="promo-title">{{ promotion.name }}</h2>
 
   <div class="all-text">
-    <p>{{ promotion.tag }} {{ promotion.difficulty }}</p>
-    <p></p>
+    <div class="tag">
+    <p >{{ promotion.tag }} </p></div>
+    <p> {{promotion.type}} . {{ promotion.difficulty }}</p>
     <p>Auteur: {{ authorName }}</p>
-    <p class="promo-title">{{ promotion.name }}</p>
+      <p>★ {{ promotion.rating }}</p>
     <p>Date de création: {{ formatDate(promotion.creationDate) }}</p>
   </div>
 
