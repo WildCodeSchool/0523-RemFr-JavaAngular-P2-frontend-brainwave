@@ -35,10 +35,10 @@ export class UpdatePromotionComponent implements OnInit {
   topic: any;
   topics: any[] = [];
   participants: any[] = [];
-  selectedTab: string = 'participants'; 
+  selectedTab: string = 'participants';
   isVoteModified: boolean = false;
-  currentRating = 3;
-  newRating: number = 0;
+  currentRating = 3.5;
+  // newRating: number = 0;
   constructor(
     private promotionsService: PromotionsService,
     private route: ActivatedRoute,
@@ -59,12 +59,14 @@ export class UpdatePromotionComponent implements OnInit {
     this.isVoteModified = true;
   }
   saveVote() {
-    if (this.newRating >= 0 && this.newRating <= 5) {
-      this.promotionsService.addRating(this.promotionId, this.newRating, this.authorId);
+    if (this.currentRating >= 0 && this.currentRating <= 5) {
+      this.promotionsService.addRating(this.promotionId, this.currentRating, this.authorId);
       this.isVoteModified = false;
-      this.newRating = 0;
+      this.currentRating = 0;
+
     }
-  }  getSanitizedDescription(description: string): SafeHtml {
+  } 
+  getSanitizedDescription(description: string): SafeHtml {
     const sanitizedDescription = this.removeMediaFromDescription(description);
     return this.sanitizer.bypassSecurityTrustHtml(sanitizedDescription);
   }
@@ -103,9 +105,9 @@ export class UpdatePromotionComponent implements OnInit {
       );
     });
   }
-showTab(tab: string): void {
-  this.selectedTab = tab;
-}
+  showTab(tab: string): void {
+    this.selectedTab = tab;
+  }
 
   getResourceLinkAndTitle(resourceId: string): Observable<any> {
     return this.promotionsService.getResourceById(resourceId);
@@ -153,18 +155,18 @@ showTab(tab: string): void {
     } else {
       this.showDropdown = false;
     }
-  
+
   }
 
   getParticipantName(userId: string): string {
     const participant = this.participantsMap.find((p: Participant) => p.id === userId);
-  
+
     if (participant) {
       return `${participant.firstname} ${participant.lastname}`;
     }
     return '';
   }
-  
+
   addParticipants(): void {
     //TODO revoir ici suppression user
     // const newPromotionId = this.promotionsService.getCreatedPromotionId();
@@ -176,9 +178,9 @@ showTab(tab: string): void {
           this.userService.updateUserById(userId, userData).subscribe();
         });
         console.log(this.addUsers);
-        
-// this.addUsers=[]
-//         this.addUsers.push(this.promotion.participantsIds);
+
+        // this.addUsers=[]
+        //         this.addUsers.push(this.promotion.participantsIds);
       },
       (error) => {
         console.error('Failed to add participants to promotion:', error);

@@ -1,1 +1,9 @@
 <button (click)="getAllUsers()">aa</button>
+<button (click)="generateRandomUsers()">Generate Users</button>
+<ul>
+    <li *ngFor="let user of randomUsers">{{ user.firstname }} {{ user.lastname }} - {{ user.email }}</li>
+</ul>
+<button (click)="generateRandomAnswers()">Generate Answers</button>
+<ul>
+    <li *ngFor="let answer of randomAnswers">{{ answer.content }}</li>
+</ul>

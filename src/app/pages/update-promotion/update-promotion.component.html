@@ -1,9 +1,13 @@
 <div *ngIf="promotion" class="promotion-details">
   <!-- TODO conversion etoile en float -->
   <!-- <p>{{ promotion.rating }}</p> -->
-  <app-star-rating [totalStars]="5" [rating]="currentRating" (ratingChanged)="onRatingChanged($event)"></app-star-rating>
-  <button *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le vote</button>
-  
+  <div class="rating">
+    <app-star-rating [totalStars]="5" [rating]="3.5" (ratingChanged)="onRatingChanged($event)"></app-star-rating>
+
+      <button class="update-button" *ngIf="isVoteModified" (click)="saveVote()">Enregistrer le vote</button>
+
+  </div>
+
   <div class="image-container">
     <img [src]="getMediaUrlFromDescription(promotion.description)" alt="Promotion Image" />
   </div>
@@ -21,7 +25,8 @@
   </div>
 
   <div class="tabs">
-    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'participants' }" (click)="showTab('participants')">
+    <button class="tabs-button" [ngClass]="{ active: selectedTab === 'participants' }"
+      (click)="showTab('participants')">
       Participants
     </button>
     <button class="tabs-button" [ngClass]="{ active: selectedTab === 'resources' }" (click)="showTab('resources')">

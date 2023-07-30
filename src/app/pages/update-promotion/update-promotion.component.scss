@@ -27,7 +27,11 @@ body {
     word-wrap: break-word;
     text-transform: capitalize;
   }
-
+.rating{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
   .promo-title {
     width: 185px;
     height: 18px;
