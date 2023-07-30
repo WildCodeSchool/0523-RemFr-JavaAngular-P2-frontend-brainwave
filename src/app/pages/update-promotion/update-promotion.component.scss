@@ -1,9 +1,11 @@
 body {
   font-family: Arial, sans-serif;
   color: white;
-.all-text{
-  margin: 2rem;
-}
+
+  .all-text {
+    margin: 2rem;
+  }
+
   .image-container {
     margin: 3rem;
     display: flex;
@@ -27,11 +29,13 @@ body {
     word-wrap: break-word;
     text-transform: capitalize;
   }
-.rating{
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: flex-end;
-}
+
+  .rating {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-end;
+  }
+
   .promo-title {
     width: 185px;
     height: 18px;
@@ -62,6 +66,8 @@ body {
 
   p {
     margin: 5px 0;
+    display: flex;
+    justify-content: center;
   }
 
   ul {
@@ -86,10 +92,11 @@ body {
   }
 
   input[type='text'] {
+    border-radius: 0.5rem;
     width: 95%;
     padding: 5px;
     color: var(--violet);
-    
+
   }
 
   .selected-participants {
@@ -126,7 +133,7 @@ body {
       background: linear-gradient(180deg, #52338A 0%, #40286D 100%);
       width: 195px;
       height: 38px;
-      transform: skewX(-20deg); 
+      transform: skewX(-20deg);
     }
   }
 
@@ -154,12 +161,44 @@ body {
   .buttonUpdate {
     display: flex;
     justify-content: center;
-  margin: 2rem;
-    background:none;
+    margin: 2rem;
+    background: none;
   }
 }
 
-.participant {
-  background-color: #e5e5e5;
-  color: var(--violet);
-  padding: 1rem; }
+.delete{
+  display: flex;
+    justify-content: flex-end;
+    margin:0.5rem  0 2rem 0;
+}
+
+    .background {
+      border-radius: 0.5rem;
+      background-color: #f9f9f9;
+      height: 25rem;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+      .border {
+        border-radius: 0.5rem;
+        background-color: var(--violet);
+       height: max-content;
+        margin: 2rem;
+        padding: 2rem;
+        width: 92%;
+      }
+    
+      .participant {
+        border-radius: 0.5rem;
+        margin: 2rem;
+        border: 0.3px solid #000;
+        background: linear-gradient(180deg, #FFF 0%, rgba(223, 223, 223, 0.87) 100%, #DFDFDF 100%);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  color: var(--violet);
+        padding: 1rem;
+      }      
+    
+
+
+
+  

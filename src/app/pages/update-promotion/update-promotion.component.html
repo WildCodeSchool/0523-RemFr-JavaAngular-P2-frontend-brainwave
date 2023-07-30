@@ -1,3 +1,4 @@
+<div class="card">
 <div *ngIf="promotion" class="promotion-details">
   <!-- TODO conversion etoile en float -->
   <!-- <p>{{ promotion.rating }}</p> -->
@@ -23,7 +24,11 @@
   <div>
     <div class="description-text" [innerHTML]="getSanitizedDescription(promotion.description)"></div>
   </div>
-
+  <div class="delete">
+    <button class="update-button" (click)="onDeletePromotion(promotionId)">Supprimer la Promotion</button>
+  </div>
+  
+</div>
   <div class="tabs">
     <button class="tabs-button" [ngClass]="{ active: selectedTab === 'participants' }"
       (click)="showTab('participants')">
@@ -36,7 +41,9 @@
       Discussions
     </button>
   </div>
-
+  
+<div class="background">
+  <div class="border">
   <div class="participant">
     <div *ngIf="selectedTab === 'resources'">
       <p>Ressources:</p>
@@ -87,8 +94,7 @@
       </div>
     </div>
   </div>
-
-  <div class="buttonUpdate">
-    <button class="update-button" (click)="onDeletePromotion(promotionId)">Supprimer la Promotion</button>
-  </div>
 </div>
+</div>
+</div>
+ 
