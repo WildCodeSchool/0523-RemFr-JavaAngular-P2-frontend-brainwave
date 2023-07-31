@@ -3,6 +3,18 @@
   display: flex;
   justify-content: center;
 }
+.all-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.promotion {
+  flex: 0 0 calc(33.33% - 20px);
+  margin: 10px;
+}
+
+/* Vous pouvez ajuster la largeur et les marges selon vos préférences */
+
 #toolbar {
   display: flex;
   justify-content: center;
@@ -17,8 +29,8 @@
 }
 #editor {
   margin: 1rem auto;
-  width: 80%;
-  min-height: 20rem;
+  width: 90%;
+  height: 30rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 10px;

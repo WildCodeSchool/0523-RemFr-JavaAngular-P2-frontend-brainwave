@@ -1,0 +1,34 @@
+<div class="all-fields">
+<div class="promotion">
+  <label for="title">Titre:</label>
+  <input type="text" id="input" name="title" [(ngModel)]="textValue" placeholder="Entrez le titre de la promotion" />
+</div>
+<div class="promotion">
+  <label for="tag">Tag:</label>
+  <input type="text" id="input" name="tag" [(ngModel)]="tag" placeholder="Entrez le tag de la promotion" />
+</div>
+<div class="promotion">
+  <label for="difficulty">Niveau</label>
+  <input type="text" id="input" name="difficulty" [(ngModel)]="difficulty" placeholder="Entrez le niveau de la promotion" />
+</div>
+<div class="promotion">
+  <label for="rating">Note:</label>
+  <input type="number" id="input" name="rating" [(ngModel)]="rating" placeholder="Entrez la note de la promotion" />
+</div>
+<div class="promotion">
+  <label for="image">Image de la promotion :</label>
+  <input type="text" id="input" name="image" [(ngModel)]="picture" placeholder="Entrez le lien de l'image" />
+</div>
+<div class="promotion">
+  <label for="link">Type :</label>
+  <input type="text" id="input" name="type" [(ngModel)]="type" placeholder="Entrez le lien type" />
+</div>
+</div>
+<div class="addParticipants">
+  <div id="editor"></div>
+  <app-participants-modal *ngIf="showModal" [createdPromoId]="createdPromoId"></app-participants-modal>
+
+  <div class="Button">
+    <button class="PromoButton" (click)="createPromotion()">Envoyer</button>
+  </div>
+</div>

@@ -3,18 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
 import { AccueilComponent } from './pages/accueil/accueil.component';
-import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
 import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
 import { SecurityPageComponent } from './pages/security/security-page/security-page.component';
 import { DashboardPagesComponent } from './pages/dashboard/dashboard.pages/dashboard.pages.component';
 import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
+import { CreatePromotionsComponent } from './pages/create-promotions/create-promotions.component';
 
 const routes: Routes = [
   {
     path: 'promotions/create',
-    component: PromotionsComponent,
+    component: CreatePromotionsComponent,
   },
   {
     path: 'promotions',
@@ -28,10 +28,7 @@ const routes: Routes = [
     path: 'addParticipants/:id',
     component: ParticipantsModalComponent,
   },
-  {
-    path: '',
-    component: HomePagesComponent,
-  },
+  
   {
     path: 'authentication',
     component: SecurityPageComponent,
@@ -44,9 +41,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPagesComponent,
+    component: DashboardPagesComponent, canActivate:[AuthGuard],
   },
-  { path: 'accueil', component: AccueilComponent },
+  { path: '', component: AccueilComponent },
 ];
 
 @NgModule({

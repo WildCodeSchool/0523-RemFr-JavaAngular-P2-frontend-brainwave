@@ -8,12 +8,14 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { environment } from 'src/environments/environment.development';
 
+import { PromotionsService } from 'src/app/services/promotions.services';
+
 @Component({
   selector: 'app-promotions',
-  templateUrl: './promotions.component.html',
-  styleUrls: ['./promotions.component.scss'],
+  templateUrl: './create-promotions.component.html',
+  styleUrls: ['./create-promotions.component.scss'],
 })
-export class PromotionsComponent implements AfterViewInit, OnInit {
+export class CreatePromotionsComponent implements AfterViewInit, OnInit {
   @Output() promoAdded: EventEmitter<Promotion> = new EventEmitter<Promotion>();
   showModal = false;
   quill!: Quill;
@@ -21,6 +23,9 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
   description: string;
   picture: string;
   tag: string;
+  type: string;
+  difficulty: string;
+  rating: number;
   createdPromoId: string;
   userConnected!: any;
   userId!: string;
@@ -28,14 +33,19 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
   constructor(
     private http: HttpClient,
     private userService: UserService,
+    private promotionsService: PromotionsService,
     private router: Router,
     private authService: AuthService
   ) {
+    this.createdPromoId = this.promotionsService.getCreatedPromotionId();
     this.userConnected = this.authService.getUserConnected();
     this.textValue = '';
     this.description = '';
     this.picture = '';
     this.tag = '';
+    this.type = '';
+    this.difficulty = '';
+    this.rating = 3.5;
     this.createdPromoId = '';
     this.authService.getUserConnected().subscribe((user: any) => {
       this.userConnected = user;
@@ -84,7 +94,11 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
     const data = {
       description: descriptionText,
       name: this.textValue,
+      picture: this.picture,
       tag: this.tag,
+      type: this.type,
+      difficulty: this.difficulty,
+      rating: this.rating,
     };
 
     this.http.post<Promotion>(url, data).subscribe(
@@ -94,8 +108,8 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
         this.promoAdded.emit(response);
         alert('La promotion est créée avec succès !');
         this.createdPromoId;
-
-        this.router.navigate(['/addParticipants', createdPromotionId]);
+        this.promotionsService.setCreatedPromotionId(createdPromotionId);
+        this.showModal = true;
       },
       (error) => {
         console.error('Failed to create promotion', error);

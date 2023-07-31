@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { PromotionsComponent } from './pages/promotions/promotions.component';
+import { CreatePromotionsComponent } from './pages/create-promotions/create-promotions.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
@@ -30,11 +30,12 @@ import { UserPromotionsComponent } from './components/dashboard/promotions/user-
 import { UserDiscussionsComponent } from './components/dashboard/discussions/user-discussions/user-discussions.component';
 import { NgOptimizedImage } from '@angular/common';
 import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PromotionsComponent,
+    CreatePromotionsComponent,
     ManagePromotionsComponent,
     ParticipantsModalComponent,
     SecurityPageComponent,
@@ -49,6 +50,7 @@ import { UpdatePromotionComponent } from './pages/update-promotion/update-promot
     UserPromotionsComponent,
     UserDiscussionsComponent,
     UpdatePromotionComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,

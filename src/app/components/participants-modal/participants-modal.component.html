@@ -7,6 +7,7 @@
     (input)="searchParticipants()"
     placeholder="Search participants"
   />
+  <!-- <button (click)="onCloseModal()">Fermer</button> -->
   <ul *ngIf="showDropdown" class="search-results">
     <li *ngFor="let participant of searchResults" (click)="selectUser(participant.id)">
       {{ participant.firstname }} {{ participant.lastname }}

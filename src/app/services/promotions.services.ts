@@ -17,6 +17,7 @@ type Participant = {
   providedIn: 'root',
 })
 export class PromotionsService {
+  private createdPromotionId = '';
   private promoDataUrl = environment.apiUrl + '/promotions';
   constructor(private httpClient: HttpClient, private userService: UserService) {}
 
@@ -71,9 +72,22 @@ export class PromotionsService {
     const url = `${this.promoDataUrl}/${id}`;
     return this.httpClient.delete<void>(url);
   }
+
   addParticipantsToPromotion(promotionId: string, participantIds: string[]) {
     const url = environment.apiUrl + `/promotions/${promotionId}/add-participants`;
     return this.httpClient.put(url, { participants: participantIds });
+  }
+  addRating(promotionId: string, userRating: number, authorId: string) {
+    const url =  environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
+  
+    this.httpClient.put<any>(url, { rating: userRating }).subscribe(
+      updatedPromotion => {
+        console.log('Promotion mise à jour avec le vote :', updatedPromotion);
+      },
+      error => {
+        console.error('Erreur lors de la mise à jour de la promotion :', error);
+      }
+    );
   }
 
   getResourceById(resourceId: string): Observable<any> {
@@ -84,5 +98,13 @@ export class PromotionsService {
   geTopicById(topicId: string): Observable<any> {
     const url = environment.apiUrl + `/topics/${topicId}`;
     return this.httpClient.get<any>(url);
+  }
+  setCreatedPromotionId(promotionId: string): void {
+    this.createdPromotionId = promotionId;
+    console.log('Promotion ID stored:', this.createdPromotionId);
+  }
+
+  getCreatedPromotionId(): string {
+    return this.createdPromotionId;
   }
 }
