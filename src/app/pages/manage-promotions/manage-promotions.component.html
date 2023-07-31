@@ -3,10 +3,11 @@
   <span class="number">{{ promotionsData.length }}</span>
   cours sont disponibles
 </p>
+<a routerLink="/promotions/create"><button class="button-create">Crée une nouvelle promotion</button></a>
 
 <div class="promotion-card-container">
   <div class="promotion-card" *ngFor="let promotion of promotionsData">
-    <p>note:{{promotion.rating}}</p>
+    <p>note:{{ promotion.rating }}</p>
 
     <div class="promo-card">
       <div class="header-card">
