@@ -18,6 +18,9 @@ import { CookieService } from 'ngx-cookie-service';
 
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthInterceptor } from './services/auth/auth-interceptor';
@@ -25,7 +28,7 @@ import { DashboardPagesComponent } from './pages/dashboard/dashboard.pages/dashb
 import { UserInformationsComponent } from './components/dashboard/user-informations/user-informations.component';
 import { UserPromotionsComponent } from './components/dashboard/promotions/user-promotions/user-promotions.component';
 import { UserDiscussionsComponent } from './components/dashboard/discussions/user-discussions/user-discussions.component';
-import {NgOptimizedImage} from "@angular/common";
+import { NgOptimizedImage } from '@angular/common';
 import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
 
 @NgModule({
@@ -38,6 +41,9 @@ import { UpdatePromotionComponent } from './pages/update-promotion/update-promot
     LoginComponent,
     RegisterComponent,
     HomePagesComponent,
+    HeaderComponent,
+    FooterComponent,
+    AccueilComponent,
     DashboardPagesComponent,
     UserInformationsComponent,
     UserPromotionsComponent,

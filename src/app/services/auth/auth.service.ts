@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 import jwtDecode from 'jwt-decode';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class AuthService {
 
   getUserConnected(): Observable<string> {
     const userId = this.getUserToken();
-    const userConnectedUrl = `http://localhost:8080/users/${userId}`;
+    const userConnectedUrl = environment.apiUrl + `/users/${userId}`;
     return this.http.get<string>(userConnectedUrl);
   }
 }

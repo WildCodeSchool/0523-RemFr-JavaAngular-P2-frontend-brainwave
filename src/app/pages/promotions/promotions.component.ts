@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Promotion } from 'src/models/Promotion';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-promotions',
@@ -78,7 +79,7 @@ export class PromotionsComponent implements AfterViewInit, OnInit {
     const descriptionText = this.quill.root.innerHTML;
 
     const userId = this.userConnected.id;
-    const url = `http://localhost:8080/promotions/${userId}`;
+    const url = environment.apiUrl + `/promotions/${userId}`;
 
     const data = {
       description: descriptionText,

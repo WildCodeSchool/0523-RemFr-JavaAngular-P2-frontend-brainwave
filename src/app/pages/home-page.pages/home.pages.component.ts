@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-home-page.pages',
@@ -10,7 +11,7 @@ export class HomePagesComponent {
   constructor(private http: HttpClient) {}
 
   getAllUsers() {
-    return this.http.get('http://localhost:8080/users').subscribe(
+    return this.http.get(environment.apiUrl + '/users').subscribe(
       (data) => console.log(data),
       (error) => console.error(error)
     );
