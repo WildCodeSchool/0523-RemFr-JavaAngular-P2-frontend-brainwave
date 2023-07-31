@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -31,45 +31,56 @@ import { UserDiscussionsComponent } from './components/dashboard/discussions/use
 import { NgOptimizedImage } from '@angular/common';
 import { UpdatePromotionComponent } from './pages/update-promotion/update-promotion.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CreatePromotionsComponent,
-    ManagePromotionsComponent,
-    ParticipantsModalComponent,
-    SecurityPageComponent,
-    LoginComponent,
-    RegisterComponent,
-    HomePagesComponent,
-    HeaderComponent,
-    FooterComponent,
-    AccueilComponent,
-    DashboardPagesComponent,
-    UserInformationsComponent,
-    UserPromotionsComponent,
-    UserDiscussionsComponent,
-    UpdatePromotionComponent,
-    StarRatingComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    RouterModule,
-    AppRoutingModule,
-    HttpClientModule,
-    NgOptimizedImage,
-  ],
-  providers: [
-    CookieService,
-    AuthGuard,
-    LoggedInAuthGuard,
-    AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  ],
+    declarations: [
+        AppComponent,
+        CreatePromotionsComponent,
+        ManagePromotionsComponent,
+        ParticipantsModalComponent,
+        SecurityPageComponent,
+        LoginComponent,
+        RegisterComponent,
+        HomePagesComponent,
+        HeaderComponent,
+        FooterComponent,
+        AccueilComponent,
+        DashboardPagesComponent,
+        UserInformationsComponent,
+        UserPromotionsComponent,
+        UserDiscussionsComponent,
+        UpdatePromotionComponent,
+        ContactComponent,
+        StarRatingComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        RouterModule,
+        AppRoutingModule,
+        HttpClientModule,
+        NgOptimizedImage,
+        MatInputModule,
+        MatFormFieldModule,
+        MatStepperModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+    ],
+    providers: [
+        CookieService,
+        AuthGuard,
+        LoggedInAuthGuard,
+        AuthService,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ],
 
-  bootstrap: [AppComponent],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

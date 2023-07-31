@@ -1,0 +1,63 @@
+<section class="content-infos">
+    <h2>Informations du site</h2>
+
+    <p>
+        BrainWave, la plateforme d'apprentissage collaborative qui connecte les étudiants d'une promotion pour échanger
+        des connaissances, poser des questions et partager des ressources.
+    </p>
+    <p> 
+        Si vous avez une question ou si vous
+        rencontrez un problème en navigant le site, vous pouvez contacter un administrateur via le formulaire
+        ci-dessous.
+    </p>
+
+    <h3>Contacter un administrateur</h3>
+</section>
+
+<mat-stepper orientation="vertical" [linear]="true" #stepper>
+    <mat-step [stepControl]="nameFormGroup">
+        <form [formGroup]="nameFormGroup">
+            <ng-template matStepLabel>Nom</ng-template>
+            <mat-form-field>
+                <mat-label>Prénom et nom</mat-label>
+                <s:input matInput placeholder="" formControlName="nameCtrl" required path="name" />
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="emailFormGroup">
+        <form [formGroup]="emailFormGroup">
+            <ng-template matStepLabel path="email">Adresse email</ng-template>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <s:input matInput formControlName="emailCtrl" required email />
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Précédent</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="textFormGroup">
+        <form [formGroup]="textFormGroup" (ngSubmit)="formMessage()">
+            <ng-template matStepLabel>Message</ng-template>
+            <mat-form-field>
+                <mat-label>Message</mat-label>
+                <s:textarea cols="30" rows="8" matInput formControlName="textCtrl" required path="content"></textarea>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Précédent</button>
+                <button mat-button type="submit" matStepperNext>Envoyer</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+         <ng-template matStepLabel>Terminé !</ng-template>
+        <p id="formFinished"></p>
+        <div>
+            <button mat-button (click)="stepper.reset()">Remise à zéro</button>
+        </div>
+    </mat-step>
+</mat-stepper>
