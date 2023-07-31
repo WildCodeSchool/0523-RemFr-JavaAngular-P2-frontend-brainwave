@@ -13,45 +13,49 @@ import { CreatePromotionsComponent } from './pages/create-promotions/create-prom
 import { ContactComponent } from './pages/contact/contact.component';
 
 const routes: Routes = [
-  {
-    path: 'promotions/create',
-    component: CreatePromotionsComponent,
-  },
-  {
-    path: 'promotions',
-    component: ManagePromotionsComponent,
-  },
-  {
-    path: 'promotion/:id',
-    component: UpdatePromotionComponent,
-  },
-  {
-    path: 'addParticipants/:id',
-    component: ParticipantsModalComponent,
-  },
-  {
-    path: 'authentication',
-    component: SecurityPageComponent,
-    canActivate: [LoggedInAuthGuard],
-  },
-  {
-    path: 'home',
-    component: HomePagesComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'dashboard',
-    component: DashboardPagesComponent,
-  },
-  {
-    path: 'contact',
-    component: ContactComponent,
-  },
-  { path: '', component: AccueilComponent },
+    {
+        path: 'promotions/create',
+        component: CreatePromotionsComponent,
+    },
+    {
+        path: 'promotions',
+        component: ManagePromotionsComponent,
+    },
+    {
+        path: 'promotion/:id',
+        component: UpdatePromotionComponent,
+    },
+    {
+        path: 'addParticipants/:id',
+        component: ParticipantsModalComponent,
+    },
+    {
+        path: '',
+        component: AccueilComponent,
+    },
+    {
+        path: 'authentication',
+        component: SecurityPageComponent,
+        canActivate: [LoggedInAuthGuard],
+    },
+    {
+        path: 'home',
+        component: HomePagesComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'dashboard',
+        component: DashboardPagesComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: 'contact',
+        component: ContactComponent,
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}

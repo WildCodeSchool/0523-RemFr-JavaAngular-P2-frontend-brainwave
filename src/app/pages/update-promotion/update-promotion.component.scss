@@ -1,6 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   color: white;
+  overflow-x: hidden;
 
   .all-text {
     margin: 2rem;
@@ -35,35 +36,36 @@ body {
     flex-direction: row-reverse;
     align-items: flex-end;
   }
-.tag{
-  height: max-content;
-  background-color: #DFDFDF;
-  border-radius: 1.3rem;
-  width: 4rem;
-  text-align: center;
-  color: #40286d;
-}
-  .promo-title p{
+
+  .tag {
+    height: max-content;
+    background-color: #DFDFDF;
+    border-radius: 1.3rem;
+    padding: 0 10px;
+    width: fit-content;
+    text-align: center;
+    color: #40286d;
+  }
+
+  .promo-title p {
     width: 185px;
     height: 18px;
     flex-shrink: 0;
   }
 
   .description-text {
-
     display: flex;
-    width: 310px;
-    height: 256px;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
-    p{
+
+    p {
       margin: 3rem;
       text-transform: capitalize;
       text-align: center;
-     }
+    }
   }
- 
+
   h2 {
     margin-bottom: 10px;
   }
@@ -76,7 +78,7 @@ body {
     margin: 10px 0;
   }
 
-  .promo-title  {
+  .promo-title {
     color: #FFF;
     font-family: Roboto;
     font-size: 34px;
@@ -183,39 +185,41 @@ body {
   }
 }
 
-.delete{
+.delete {
   display: flex;
-    justify-content: flex-end;
-    margin:0.5rem  0 2rem 0;
+  justify-content: flex-end;
+  margin: 0.5rem 0 2rem 0;
 }
 
-    .background {
-      border-radius: 0.5rem;
-      background-color: #f9f9f9;
-      height: 25rem;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-      .border {
-        border-radius: 0.5rem;
-        background-color: var(--violet);
-       height: max-content;
-        margin: 2rem;
-        padding: 2rem;
-        width: 92%;
-      }
-    
-      .participant {
-        border-radius: 0.5rem;
-        margin: 2rem;
-        border: 0.3px solid #000;
-        background: linear-gradient(180deg, #FFF 0%, rgba(223, 223, 223, 0.87) 100%, #DFDFDF 100%);
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);  color: var(--violet);
-        padding: 1rem;
-      }      
-    
+.background {
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.border {
+  border-radius: 0.5rem;
+  background-color: var(--violet);
+  height: max-content;
+  margin: 2rem 0;
+  padding: 0.5rem;
+  width: 92%;
+}
+
+.participant {
+  border-radius: 0.5rem;
+  margin: 1rem;
+  border: 0.3px solid #000;
+  background: linear-gradient(180deg, #FFF 0%, rgba(223, 223, 223, 0.87) 100%, #DFDFDF 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: var(--violet);
+  padding: 1rem;
+}
 
 
 
-  
+
+
