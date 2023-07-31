@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-register',
@@ -56,7 +57,7 @@ export class RegisterComponent {
 
   registerUser() {
     return this.http
-      .post('http://localhost:8080/api/auth/register', this.user, { observe: 'response' })
+      .post(environment.apiUrl + '/api/auth/register', this.user, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200 || response.status === 201) {
           this.registrationStatus.emit({ success: true, submitted: this.formSubmitted });
