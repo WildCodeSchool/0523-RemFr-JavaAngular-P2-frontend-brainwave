@@ -1,29 +1,31 @@
 <nav class="header-container">
-  <div class="header-content">
-    <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
-      <div class="line"></div>
-      <div class="line"></div>
-      <div class="line"></div>
+    <div class="header-content">
+        <div class="menu-burger" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+
+        <div class="menu" [ngClass]="{ open: isMenuOpen }">
+            <div class="nav-mobile">
+                <ul>
+                    <li><a routerLink="/">Accueil</a></li>
+                    <li><a routerLink="/promotions">Promos</a></li>
+                    <li><a routerLink="/">Forum</a></li>
+                    <li><a routerLink="/dashboard">Dashboard</a></li>
+                    <li><a routerLink="/contact">Contact</a></li>
+                    <li><a routerLink="/authentication">Connexion / Déco</a></li>
+                    <img src="assets/images/Brain.png" alt="Image 2" class="menu-image" />
+                </ul>
+            </div>
+        </div>
     </div>
 
-    <div class="menu" [ngClass]="{ open: isMenuOpen }">
-      <ul>
-        <li><a routerLink="/">Accueil</a></li>
-        <li><a routerLink="/promotions">Promos</a></li>
-        <li><a routerLink="/">Forum</a></li>
-        <li><a routerLink="/dashboard">Dashboard</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/authentication">Connexion / Déco</a></li>
-        <img src="assets/images/Brain.png" alt="Image 2" class="menu-image" />
-      </ul>
+    <div class="icons">
+        <a routerLink="/dashboard" class="icon">
+            <i class="fa fa-user"></i>
+        </a>
+        <div class="icon"><i class="fa fa-envelope"></i></div>
+        <div class="icon"><i class="fa fa-bell"></i></div>
     </div>
-  </div>
-
-  <div class="icons">
-    <a routerLink="/dashboard" class="icon">
-      <i class="fa fa-user"></i>
-    </a>
-    <div class="icon"><i class="fa fa-envelope"></i></div>
-    <div class="icon"><i class="fa fa-bell"></i></div>
-  </div>
 </nav>

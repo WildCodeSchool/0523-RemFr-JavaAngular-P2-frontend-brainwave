@@ -69,7 +69,14 @@ nav.header-container {
   z-index: 1;
 }
 
-.menu ul {
+.menu {
+  div {
+    margin-top: 25%;
+    height: 100%;
+  }
+}
+
+.menu .nav-mobile ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -78,9 +85,9 @@ nav.header-container {
 
 .menu li {
   padding: 20px;
-  padding-left: 10vh;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .menu li a {
@@ -122,14 +129,28 @@ nav.header-container {
 
   .menu {
     display: flex;
+    position: relative;
+    height: 100%;
+    div {
+      height: 100%;
+    }
   }
 
-  .menu ul {
+  .menu .nav-mobile ul {
     list-style: none;
     display: flex;
+  }
+
+  .nav-mobile {
+    display: flex;
     align-items: center;
-    margin: 0;
-    padding: 0;
+    height: 100%;
+    position: absolute;
+    ul {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   .menu li {
