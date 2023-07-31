@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-participants-modal',
@@ -51,7 +52,7 @@ export class ParticipantsModalComponent implements OnInit {
       const data = {
         content: this.searchTerm,
       };
-      this.http.post<any[]>('http://localhost:8080/users/search', data).subscribe(
+      this.http.post<any[]>(environment.apiUrl + '/users/search', data).subscribe(
         (participants: any[]) => {
           this.searchResults = participants.filter((participant) => !this.addUsers.includes(participant.id));
           this.showDropdown = true;
@@ -82,7 +83,7 @@ export class ParticipantsModalComponent implements OnInit {
 
   addParticipantToPromotion(): void {
     //TODO modifier ici
-    const url = `http://localhost:8080/promotions/${this.createdPromotionId}/add-participants`;
+    const url = environment.apiUrl + `/promotions/${this.createdPromotionId}/add-participants`;
 
     this.http.put(url, { participants: this.addUsers }).subscribe(
       (response) => {

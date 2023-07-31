@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-dashboard.pages',
@@ -21,7 +22,7 @@ export class DashboardPagesComponent implements OnInit {
         if (this.userData.promotionParticipantsIds.length > 0) {
           for (let i = 0; i < this.userData.promotionParticipantsIds.length; i++) {
             this.http
-              .get(`http://localhost:8080/promotions/${this.userData.promotionParticipantsIds[i]}`)
+              .get(environment.apiUrl + `/promotions/${this.userData.promotionParticipantsIds[i]}`)
               .subscribe((data) => {
                 this.userPromotions.push(data);
               });

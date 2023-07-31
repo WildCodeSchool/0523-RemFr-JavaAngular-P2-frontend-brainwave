@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent {
   loginUser() {
     if (this.isEmailValid) {
       return this.http
-        .post('http://localhost:8080/api/auth/login', this.user, {
+        .post(environment.apiUrl + '/api/auth/login', this.user, {
           observe: 'response',
           withCredentials: true,
         })
