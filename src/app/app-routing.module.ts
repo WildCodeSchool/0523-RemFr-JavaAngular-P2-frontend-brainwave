@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 import { PromotionsComponent } from './pages/promotions/promotions.component';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
@@ -45,6 +46,7 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardPagesComponent,
   },
+  { path: 'accueil', component: AccueilComponent },
 ];
 
 @NgModule({
