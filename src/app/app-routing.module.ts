@@ -42,6 +42,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardPagesComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'contact',
