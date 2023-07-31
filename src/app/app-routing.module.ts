@@ -28,7 +28,7 @@ const routes: Routes = [
     path: 'addParticipants/:id',
     component: ParticipantsModalComponent,
   },
-  
+
   {
     path: 'authentication',
     component: SecurityPageComponent,
@@ -41,7 +41,8 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPagesComponent, canActivate:[AuthGuard],
+    component: DashboardPagesComponent,
+    canActivate: [AuthGuard],
   },
   { path: '', component: AccueilComponent },
 ];
