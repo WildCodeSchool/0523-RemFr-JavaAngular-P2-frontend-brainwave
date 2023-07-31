@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PromotionsService } from 'src/app/services/promotions.services';
 import { UserService } from 'src/app/services/user.service';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 
 type Participant = {
   id: string;

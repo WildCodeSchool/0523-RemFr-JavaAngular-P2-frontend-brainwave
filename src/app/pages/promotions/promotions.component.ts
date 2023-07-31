@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Promotion } from 'src/models/Promotion';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';velopment';
 
 @Component({
   selector: 'app-promotions',

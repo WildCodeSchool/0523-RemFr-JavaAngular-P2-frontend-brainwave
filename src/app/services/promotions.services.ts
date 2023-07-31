@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Promotion } from 'src/models/Promotion';
 import { UserService } from './user.service';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';velopment';
 
 type Participant = {
   id: string;
