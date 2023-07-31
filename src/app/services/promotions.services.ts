@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Promotion } from 'src/models/Promotion';
 import { UserService } from './user.service';
+import { environment } from 'src/environments/environment.development';
 
 type Participant = {
   id: string;
@@ -17,7 +18,7 @@ type Participant = {
 })
 export class PromotionsService {
   private createdPromotionId = '';
-  private promoDataUrl = 'http://localhost:8080/promotions';
+  private promoDataUrl = environment.apiUrl + '/promotions';
   constructor(private httpClient: HttpClient, private userService: UserService) {}
 
   getPromotions(): Observable<object> {
@@ -71,13 +72,13 @@ export class PromotionsService {
     const url = `${this.promoDataUrl}/${id}`;
     return this.httpClient.delete<void>(url);
   }
-  //TODO ici aussi
+
   addParticipantsToPromotion(promotionId: string, participantIds: string[]) {
-    const url = `http://localhost:8080/promotions/${promotionId}/add-participants`;
+    const url = environment.apiUrl + `/promotions/${promotionId}/add-participants`;
     return this.httpClient.put(url, { participants: participantIds });
   }
   addRating(promotionId: string, userRating: number, authorId: string) {
-    const url = `http://localhost:8080/promotions/${promotionId}/users/${authorId}`;
+    const url =  environment.apiUrl + `/promotions/${promotionId}/users/${authorId}`;
   
     this.httpClient.put<any>(url, { rating: userRating }).subscribe(
       updatedPromotion => {
@@ -90,12 +91,12 @@ export class PromotionsService {
   }
 
   getResourceById(resourceId: string): Observable<any> {
-    const url = `http://localhost:8080/resources/${resourceId}`;
+    const url = environment.apiUrl + `/resources/${resourceId}`;
     return this.httpClient.get<any>(url);
   }
 
   geTopicById(topicId: string): Observable<any> {
-    const url = `http://localhost:8080/topics/${topicId}`;
+    const url = environment.apiUrl + `/topics/${topicId}`;
     return this.httpClient.get<any>(url);
   }
   setCreatedPromotionId(promotionId: string): void {

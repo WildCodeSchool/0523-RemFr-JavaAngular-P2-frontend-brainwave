@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { PromotionsService } from 'src/app/services/promotions.services';
 import { EventEmitter } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-participants-modal',
@@ -30,7 +31,7 @@ export class ParticipantsModalComponent implements OnInit {
     private http: HttpClient,
     private userService: UserService,
     private route: ActivatedRoute,
-    private promotionsService: PromotionsService
+    private promotionsService: PromotionsService, private router: Router
   ) {
     this.participantsIds = '';
     this.participants = [];
@@ -61,7 +62,7 @@ export class ParticipantsModalComponent implements OnInit {
       const data = {
         content: this.searchTerm,
       };
-      this.http.post<any[]>('http://localhost:8080/users/search', data).subscribe(
+      this.http.post<any[]>(environment.apiUrl + '/users/search', data).subscribe(
         (participants: any[]) => {
           this.searchResults = participants.filter((participant) => !this.addUsers.includes(participant.id));
           this.showDropdown = true;
@@ -92,11 +93,11 @@ export class ParticipantsModalComponent implements OnInit {
   //TODO ici sinon revenir sur le repo
   addParticipantToPromotion(): void {
     const newPromotionId = this.promotionsService.getCreatedPromotionId();
-    const url = `http://localhost:8080/promotions/${newPromotionId}/add-participants`;
+    const url = environment.apiUrl + `/promotions/${newPromotionId}/add-participants`;
 
     this.http.put(url, { participants: this.addUsers }).subscribe(
       (response) => {
-        alert("Votre liste d'étudiant a été créée pour cette promotion ");
+        this.router.navigate([`/promotion/${newPromotionId}`]);
       },
       (error) => {
         console.error('Failed to add participant to promotion:', error);

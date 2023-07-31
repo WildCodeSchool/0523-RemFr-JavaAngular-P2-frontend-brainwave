@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoggedInAuthGuard } from './services/auth/logged-in-auth-guard.service';
 import { AuthGuard } from './services/auth/auth-guard.service';
+import { AccueilComponent } from './pages/accueil/accueil.component';
 import { ManagePromotionsComponent } from './pages/manage-promotions/manage-promotions.component';
 import { ParticipantsModalComponent } from './components/participants-modal/participants-modal.component';
 import { HomePagesComponent } from './pages/home-page.pages/home.pages.component';
@@ -27,10 +28,7 @@ const routes: Routes = [
     path: 'addParticipants/:id',
     component: ParticipantsModalComponent,
   },
-  {
-    path: '',
-    component: HomePagesComponent,
-  },
+  
   {
     path: 'authentication',
     component: SecurityPageComponent,
@@ -43,8 +41,9 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashboardPagesComponent,
+    component: DashboardPagesComponent, canActivate:[AuthGuard],
   },
+  { path: '', component: AccueilComponent },
 ];
 
 @NgModule({

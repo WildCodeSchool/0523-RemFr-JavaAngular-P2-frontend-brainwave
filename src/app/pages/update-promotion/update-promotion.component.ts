@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { PromotionsService } from 'src/app/services/promotions.services';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment.development';
 
 type Participant = {
   id: string;
@@ -148,7 +149,7 @@ export class UpdatePromotionComponent implements OnInit {
       const data = {
         content: this.searchTerm,
       };
-      this.http.post<any[]>('http://localhost:8080/users/search', data).subscribe((participants: any[]) => {
+      this.http.post<any[]>(environment.apiUrl + '/users/search', data).subscribe((participants: any[]) => {
         this.searchResults = participants.filter((participant) => !this.addUsers.includes(participant.id));
         this.showDropdown = true;
       });

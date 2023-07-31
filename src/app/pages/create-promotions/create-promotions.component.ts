@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Promotion } from 'src/models/Promotion';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { environment } from 'src/environments/environment.development';
 
 import { PromotionsService } from 'src/app/services/promotions.services';
 
@@ -88,8 +89,8 @@ export class CreatePromotionsComponent implements AfterViewInit, OnInit {
     const descriptionText = this.quill.root.innerHTML;
 
     const userId = this.userConnected.id;
-    const url = `http://localhost:8080/promotions/${userId}`;
-    console.log('Picture:', this.picture);
+    const url = environment.apiUrl + `/promotions/${userId}`;
+
     const data = {
       description: descriptionText,
       name: this.textValue,
@@ -109,8 +110,6 @@ export class CreatePromotionsComponent implements AfterViewInit, OnInit {
         this.createdPromoId;
         this.promotionsService.setCreatedPromotionId(createdPromotionId);
         this.showModal = true;
-        this.router.navigate(['/']);
-        console.log(this.promotionsService.setCreatedPromotionId(createdPromotionId));
       },
       (error) => {
         console.error('Failed to create promotion', error);
