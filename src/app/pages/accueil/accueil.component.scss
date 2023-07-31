@@ -51,32 +51,6 @@ input[type='text'] {
   cursor: pointer;
 }
 
-.square-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  height: 80vh;
-  width: 80%;
-  margin: 0 auto;
-}
-
-.square {
-  width: 250px;
-  height: 200px;
-  background-color: #6f42c1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px;
-}
-
-.square h2 {
-  color: white;
-  font-size: 18px;
-}
-
 /* Styles pour les écrans desktop */
 @media (min-width: 768px) {
   .background-image {
@@ -89,8 +63,8 @@ input[type='text'] {
 
   .search-bar {
     top: 60%;
-    width: 80%; /* Ajuste la largeur de la barre de recherche en fonction de l'image */
-    padding: 30px; /* Ajuste la marge intérieure de la barre de recherche en fonction de l'image */
+    width: 80%;
+    padding: 30px;
   }
 
   h1 {
@@ -99,7 +73,7 @@ input[type='text'] {
   }
 
   input[type='text'] {
-    width: 100%; /* Remplit la largeur de la barre de recherche sur desktop */
+    width: 100%;
     font-size: 20px;
   }
 

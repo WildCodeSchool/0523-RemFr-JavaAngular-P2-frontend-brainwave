@@ -4,16 +4,26 @@
   <img src="assets/images/Fond.png" />
   <div class="search-bar">
     <h1>BRAIN WAVE</h1>
-    <input type="text" placeholder="Rechercher..." (input)="filterSquares($event)" />
+    <input type="text" placeholder="Rechercher..." (input)="filterPromotions($event)" />
   </div>
 </div>
 
 <button class="filter-button">Filtre par thème</button>
 
-<div class="square-container">
-  <!-- Utilisation de *ngFor pour afficher les carrés filtrés -->
-  <div class="square" *ngFor="let square of filteredSquares">
-    <h2>{{ square.title }}</h2>
+<div class="promotions-container">
+  <div class="promo-card" *ngFor="let promo of allPromotions">
+    <div class="header-card">
+      <img src="{{ promo.picture }}" />
+    </div>
+    <div class="body-card">
+      <p>{{ promo.name }}</p>
+      <div class="promotion-detail-container">
+        <a class="promotion-detail-button" href="#">
+          <p>Details</p>
+          <img src="assets/images/right-arrow.svg" alt="arrow" height="20" width="20" />
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
