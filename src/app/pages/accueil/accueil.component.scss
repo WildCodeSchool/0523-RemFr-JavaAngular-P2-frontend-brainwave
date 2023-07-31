@@ -51,6 +51,76 @@ input[type='text'] {
   cursor: pointer;
 }
 
+// ---------------------------- carte  ----------------------------
+.all-promotions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.promo-card {
+  width: 300px;
+  height: 260px;
+  margin: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  .header-card {
+    img {
+      width: 100%;
+      height: 70%;
+      border-radius: 5px;
+      border: 0.3px solid black;
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+  .body-card {
+    background-color: (var(--violet));
+    color: white;
+    padding: 10px 0;
+    height: 40%;
+    width: 100%;
+    margin-top: -8px;
+    border-radius: 0 0 5px 5px;
+    border: 0.3px solid black;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .promotion-detail-container {
+      display: flex;
+      justify-content: flex-end;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+      .promotion-detail-button {
+        width: 30%;
+        display: flex;
+        justify-content: space-evenly;
+        cursor: pointer;
+        margin-right: 10px;
+        p {
+          text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        img {
+          width: 20px;
+          height: 20px;
+          align-items: center;
+          vertical-align: middle;
+        }
+      }
+    }
+    p {
+      margin: 0;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+    }
+  }
+}
+
 /* Styles pour les écrans desktop */
 @media (min-width: 768px) {
   .background-image {
@@ -81,20 +151,27 @@ input[type='text'] {
     margin-top: 40px;
   }
 
-  .square-container {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: auto;
-    width: 80%;
+  // ---------------------------- carte  ----------------------------
+
+  .promotions-participated-container {
+    margin-top: 100px;
+  }
+  .header-promotions {
+    width: 90%;
+  }
+  .button-join-promotion {
+    font-size: 14px;
+    width: 100px;
+  }
+  .title {
+    font-size: 16px;
   }
 
-  .square {
-    width: calc(33.33% - 40px);
-    margin: 20px;
-  }
-
-  .square h2 {
-    font-size: 24px;
+  .show-more {
+    width: 90%;
+    font-size: 16px;
+    p {
+      width: 80px;
+    }
   }
 }

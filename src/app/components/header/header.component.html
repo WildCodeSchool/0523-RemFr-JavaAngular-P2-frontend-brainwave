@@ -8,19 +8,21 @@
 
     <div class="menu" [ngClass]="{ open: isMenuOpen }">
       <ul>
-        <li><a routerLink="/accueil">Accueil</a></li>
+        <li><a routerLink="/">Accueil</a></li>
         <li><a routerLink="/promotions">Promos</a></li>
-        <li><a routerLink="/discution">Discution</a></li>
-        <li><a routerLink="/commerce">Commerce</a></li>
+        <li><a routerLink="/">Forum</a></li>
         <li><a routerLink="/dashboard">Dashboard</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
+        <li><a routerLink="/">Contact</a></li>
         <li><a routerLink="/authentication">Connexion / Déco</a></li>
+        <img src="assets/images/Brain.png" alt="Image 2" class="menu-image" />
       </ul>
     </div>
   </div>
 
   <div class="icons">
-    <div class="icon"><i class="fa fa-user"></i></div>
+    <a routerLink="/dashboard" class="icon">
+      <i class="fa fa-user"></i>
+    </a>
     <div class="icon"><i class="fa fa-envelope"></i></div>
     <div class="icon"><i class="fa fa-bell"></i></div>
   </div>
