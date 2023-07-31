@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';velopment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',

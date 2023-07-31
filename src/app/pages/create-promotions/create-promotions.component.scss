@@ -1,0 +1,50 @@
+.promotion {
+  margin: 1.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+.all-fields {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.promotion {
+  flex: 0 0 calc(33.33% - 20px);
+  margin: 10px;
+}
+
+/* Vous pouvez ajuster la largeur et les marges selon vos préférences */
+
+#toolbar {
+  display: flex;
+  justify-content: center;
+  background-color: #f5f5f5;
+  padding: 10px;
+}
+#input {
+  margin-left: 0.5rem;
+  border-color: #6f42c1;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+}
+#editor {
+  margin: 1rem auto;
+  width: 90%;
+  height: 30rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+}
+.Button {
+  display: flex;
+  justify-content: center;
+
+  .PromoButton {
+    border-radius: 0.5rem;
+    background-color: #6f42c1;
+    color: white;
+    width: 140px;
+    height: 30px;
+    margin: 2rem;
+  }
+}

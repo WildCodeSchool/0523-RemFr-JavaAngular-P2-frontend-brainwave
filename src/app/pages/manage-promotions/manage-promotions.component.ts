@@ -37,7 +37,6 @@ export class ManagePromotionsComponent implements OnInit {
     }
     return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
   }
-
   getPromotionsData(): void {
     this.promotionsService.getPromotions().subscribe((data: any) => {
       this.promotionsData = data;

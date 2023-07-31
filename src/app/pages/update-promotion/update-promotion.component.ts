@@ -36,7 +36,10 @@ export class UpdatePromotionComponent implements OnInit {
   topic: any;
   topics: any[] = [];
   participants: any[] = [];
-
+  selectedTab: string = 'participants';
+  isVoteModified: boolean = false;
+  currentRating = 3.5;
+  // newRating: number = 0;
   constructor(
     private promotionsService: PromotionsService,
     private route: ActivatedRoute,
@@ -51,6 +54,19 @@ export class UpdatePromotionComponent implements OnInit {
     }
     return this.datePipe.transform(date, 'dd MMMM yyyy') || '';
   }
+
+  onRatingChanged(rating: number) {
+    this.currentRating = rating;
+    this.isVoteModified = true;
+  }
+  saveVote() {
+    if (this.currentRating >= 0 && this.currentRating <= 5) {
+      this.promotionsService.addRating(this.promotionId, this.currentRating, this.authorId);
+      this.isVoteModified = false;
+      this.currentRating = 0;
+
+    }
+  } 
   getSanitizedDescription(description: string): SafeHtml {
     const sanitizedDescription = this.removeMediaFromDescription(description);
     return this.sanitizer.bypassSecurityTrustHtml(sanitizedDescription);
@@ -90,6 +106,9 @@ export class UpdatePromotionComponent implements OnInit {
       );
     });
   }
+  showTab(tab: string): void {
+    this.selectedTab = tab;
+  }
 
   getResourceLinkAndTitle(resourceId: string): Observable<any> {
     return this.promotionsService.getResourceById(resourceId);
@@ -125,6 +144,7 @@ export class UpdatePromotionComponent implements OnInit {
   }
 
   searchParticipants(): void {
+    this.searchResults = [];
     if (this.searchTerm.length >= 2) {
       const data = {
         content: this.searchTerm,
@@ -136,10 +156,12 @@ export class UpdatePromotionComponent implements OnInit {
     } else {
       this.showDropdown = false;
     }
+
   }
 
   getParticipantName(userId: string): string {
-    const participant = this.searchResults.find((p) => p.id === userId);
+    const participant = this.participantsMap.find((p: Participant) => p.id === userId);
+
     if (participant) {
       return `${participant.firstname} ${participant.lastname}`;
     }
@@ -147,14 +169,19 @@ export class UpdatePromotionComponent implements OnInit {
   }
 
   addParticipants(): void {
+    //TODO revoir ici suppression user
+    // const newPromotionId = this.promotionsService.getCreatedPromotionId();
+
     this.promotionsService.addParticipantsToPromotion(this.promotionId, this.addUsers).subscribe(
       (response) => {
         this.addUsers.forEach((userId) => {
           const userData = { promotionId: this.promotionId };
           this.userService.updateUserById(userId, userData).subscribe();
         });
+        console.log(this.addUsers);
 
-        this.addUsers.push(this.promotion.participantsIds);
+        // this.addUsers=[]
+        //         this.addUsers.push(this.promotion.participantsIds);
       },
       (error) => {
         console.error('Failed to add participants to promotion:', error);
@@ -187,6 +214,14 @@ export class UpdatePromotionComponent implements OnInit {
 
     return null;
   }
+  getPromotionImageUrl():any{
+    if (this.promotion.picture) {
+      return this.promotion.picture;
+    } else {
+      return this.getMediaUrlFromDescription(this.promotion.description);
+    }
+  }
+
   removeMediaFromDescription(description: string): string {
     const parser = new DOMParser();
     const doc = parser.parseFromString(description, 'text/html');

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { environment } from 'src/environments/environment';velopment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard.pages',
