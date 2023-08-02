@@ -17,6 +17,7 @@
   </div> -->
         <div class="image-container">
             <img [src]="getPromotionImageUrl()" alt="Promotion Image" />
+            
         </div>
 
         <h2 class="promo-title">{{ promotion.name }}</h2>
@@ -60,14 +61,18 @@
                 <div *ngIf="selectedTab === 'resources'">
                     <p>Ressources:</p>
                     <ul>
-                        <li *ngFor="let resource of resources">{{ resource.link }} {{ resource.title }}</li>
-                    </ul>
+                        <li *ngFor="let resource of resources">
+                          <a href="{{ resource.link }}" target="_blank">{{ resource.title }}</a>
+                        </li>
+                      </ul>
+                      
                 </div>
 
                 <div *ngIf="selectedTab === 'topics'">
                     <p>Discussions:</p>
                     <ul>
-                        <li *ngFor="let topic of topics">{{ topic.upvote }} {{ topic.title }}</li>
+                        <li *ngFor="let topic of topics">{{ topic.upvote }} {{ topic.title }} {{ topic.content }}</li>
+                       
                     </ul>
                 </div>
 
